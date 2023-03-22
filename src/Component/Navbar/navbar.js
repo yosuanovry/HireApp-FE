@@ -7,7 +7,6 @@ import peworld from "../../Assets/LandingPage/hireapp_logo.png"
 export default function Navbar() {
   return (
     <>
-    <link rel="stylesheet" href= "./navbar.css" />
     <div className="container-fluid">
         <div className="row">
             <nav className="mt-5">
@@ -19,10 +18,23 @@ export default function Navbar() {
                     <div className="col-sm-4 ms-4">
                         <div className="row">
                             <div className="col d-flex justify-content-end align-items-center">
-                        <Link to='/auth/login'type="button" className="btn-1 btn p-3">Masuk Untuk Pekerja</Link>
+                        <Link to='/auth/login-pekerja'type="button" className="btn-1 btn p-3" style={{
+                            borderColor: '#5E50A1',
+                            borderWidth: '2px',
+                            color:'#5E50A1',
+                            fontWeight: '700',
+                            fontSize: '1vw',
+                        }}>Masuk Untuk Pekerja</Link>
                             </div>
                             <div className="col d-flex justify-content-start align-items-center">
-                        <Link to='/auth/login' type="button" className="btn-2 btn p-3">Masuk Untuk Perekrut</Link>
+                        <Link to='/auth/login-perekrut' type="button" className="btn-2 btn p-3" style={{
+                            borderColor: '#5E50A1',
+                            backgroundColor: '#5E50A1',
+                            borderWidth: '2px',
+                            color:'white',
+                            fontWeight: '700',
+                            fontSize: '1vw',
+                        }}>Masuk Untuk Perekrut</Link>
                             </div>
                         </div>
                     </div>
