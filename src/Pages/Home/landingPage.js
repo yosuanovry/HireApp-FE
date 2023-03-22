@@ -2,17 +2,16 @@ import React from "react";
 import Navbar from "../../Component/Navbar/navbar";
 import Footer from "../../Component/Footer/footer";
 import CardSwiper from "../../Component/CardSwiper/cardswiper"
-import lp1 from "../../Assets/lp1.PNG";
-import lp2 from "../../Assets/lp2.PNG";
-import lp3 from "../../Assets/lp3.PNG"
-import iconch from "../../Assets/iconch.PNG"
-import iconch2 from "../../Assets/iconch2.PNG"
+import lp1 from "../../Assets/LandingPage/lp1.PNG";
+import lp2 from "../../Assets/LandingPage/lp2.PNG";
+import lp3 from "../../Assets/LandingPage/lp3.PNG"
+import iconch from "../../Assets/LandingPage/iconch.PNG"
+import iconch2 from "../../Assets/LandingPage/iconch2.PNG"
 import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
     <>
-      {" "}
       <Navbar />
       <div className="container mt-5 pt-5">
         <div className="row">

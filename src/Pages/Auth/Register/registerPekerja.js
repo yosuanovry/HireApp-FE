@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import imgBgLogin from "../../../Images/img-bg-login.png";
-import bgLogin from "../../../Images/bg-login.png";
-import logoLogin from "../../../Images/logo-icon.png";
+import imgBgLogin from "../../../Assets/Auth/img-bg-login.png";
+import bgLogin from "../../../Assets/Auth/bg-login.png";
+import logoLogin from "../../../Assets/Auth/logo-icon.png";
 
 export default function RegisterPekerja() {
   return (

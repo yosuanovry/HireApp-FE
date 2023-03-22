@@ -1,5 +1,5 @@
 import React from 'react'
-import peworld2 from "../../Assets/peworld2.png"
+import peworld2 from "../../Assets/LandingPage/peworld2.png"
 
 export default function Footer() {
   return (

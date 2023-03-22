@@ -1,7 +1,8 @@
 import React from 'react'
 import './navbar.css'
 import { Link } from 'react-router-dom'
-import peworld from "../../Assets/hireapp_logo.png"
+import peworld from "../../Assets/LandingPage/hireapp_logo.png"
+
 
 export default function Navbar() {
   return (

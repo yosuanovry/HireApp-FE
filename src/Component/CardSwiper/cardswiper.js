@@ -1,9 +1,9 @@
 import React from "react";
-import { Navigation, Pagination } from 'swiper';
+// import { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from "swiper/react";
-import nialh from "../../Assets/nialh.png"
-import harryst from "../../Assets/harryst.png"
-import louisth from "../../Assets/louisth.png"
+// import nialh from "../../Assets/nialh.png"
+import harryst from "../../Assets/LandingPage/harryst.png"
+// import louisth from "../../Assets/louisth.png"
 import "./cardswiper.css"
 
 export default function CardSwiper() {
