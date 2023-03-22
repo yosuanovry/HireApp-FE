@@ -1,11 +1,13 @@
 import React from 'react'
-import './navbar.css'
+import "./navbar.css"
 import { Link } from 'react-router-dom'
 import peworld from "../../Assets/LandingPage/hireapp_logo.png"
 
 
 export default function Navbar() {
   return (
+    <>
+    <link rel="stylesheet" href= "./navbar.css" />
     <div className="container-fluid">
         <div className="row">
             <nav className="mt-5">
@@ -17,10 +19,10 @@ export default function Navbar() {
                     <div className="col-sm-4 ms-4">
                         <div className="row">
                             <div className="col d-flex justify-content-end align-items-center">
-                        <Link type="button" className="btn-1 btn p-3">Masuk Untuk Pekerja</Link>
+                        <Link to='/auth/login'type="button" className="btn-1 btn p-3">Masuk Untuk Pekerja</Link>
                             </div>
                             <div className="col d-flex justify-content-start align-items-center">
-                        <Link type="button" className="btn-2 btn p-3">Masuk Untuk Perekrut</Link>
+                        <Link to='/auth/login' type="button" className="btn-2 btn p-3">Masuk Untuk Perekrut</Link>
                             </div>
                         </div>
                     </div>
@@ -28,5 +30,6 @@ export default function Navbar() {
             </nav>
         </div>
     </div>
+    </>
   );
 };
