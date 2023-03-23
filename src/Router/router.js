@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Home from '../Pages/Home/landingPage';
 import HomePerekrut from "../Pages/Home/homePerekrut";
+import HomePerekrutSort from "../Pages/Home/homePerekrutSort";
 import AuthLoginPekerja from "../Pages/Auth/Login/loginPekerja";
 import AuthLoginPerekrut from "../Pages/Auth/Login/loginPerekrut";
 import AuthRegisterPekerja from "../Pages/Auth/Register/registerPekerja";
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Navigate to="home" replace="true" />} />
         <Route path="/home" element={< Home />} />
         <Route path="/home-perekrut" element={< HomePerekrut />} />
+        <Route path="/home-perekrut-sort" element={< HomePerekrutSort />} />
         <Route path="/auth/login-pekerja" element={<AuthLoginPekerja />} />
         <Route path="/auth/login-perekrut" element={<AuthLoginPerekrut />} />
         <Route path="/auth/register-pekerja" element={<AuthRegisterPekerja />} />

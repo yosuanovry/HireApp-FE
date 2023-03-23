@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
 import "./home.css";
 import louisth from "../../Assets/LandingPage/louisth.png";
@@ -10,6 +10,15 @@ import Footer from "../../Component/Footer/footerCorporate";
 // import IconProfile from "../../Assets/NavCorporate/louisth.png";
 
 export default function HomePerekrut() {
+  const [sortBy, setSortBy] = useState('')
+
+  const sortOptions = ["Sortir berdasarkan nama", "Sortir berdasarkan skill", "Sortir berdasarkan lokasi", "Sortir berdasarkan freelance", "Sortir berdasarkan fulltime"]
+
+  const handleSort = async (e) => {
+    let value = e.target.value;
+    setSortBy(value);
+  }
+
   return (
     <>
       <NavbarCorporate />
@@ -40,17 +49,15 @@ export default function HomePerekrut() {
             >
               Search
             </button>
-            <select
-              className="btn btn-warning p-3 dropdown-toggle text-white shadow-none ms-4"
-              style={{
+            <select className="btn btn-warning dropdown-toggle text-white shadow-none ms-4" onChange={handleSort} value={sortBy} style={{
                 backgroundColor: "#5E50A1",
                 border: "none",
-              }}
-            >
-              <option>Category</option>
-              <option>Category 1</option>
-              <option>Category 2</option>
-            </select>
+              }}>
+                <option>Sort:</option>
+                {sortOptions.map((item, index) => (
+                  <option value={item} key={index}>{item}</option>
+                ))}
+              </select>
           </div>
         </div>
       </div>
