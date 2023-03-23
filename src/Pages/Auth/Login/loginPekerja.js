@@ -71,18 +71,7 @@ export default function Login() {
                   <div className="mt-5 d-flex justify-content-center">
                     <p>
                       Anda belum punya akun?
-<<<<<<< HEAD:src/Pages/Auth/Login/Login.js
-                      <Link to={"/auth/register-pekerja"}>
-                        {" "}
-                        Daftar sebagai pekerja
-                      </Link>
-                      <Link to={"/auth/register-perekrut"}>
-                        {" "}
-                        / Daftar sebagai perekrut
-                      </Link>
-=======
                       <Link to={"/auth/register-pekerja"}> Daftar sebagai pekerja</Link>
->>>>>>> 172106a1b9c04c75968e8d3df83fe6bcc130b039:src/Pages/Auth/Login/loginPekerja.js
                     </p>
                   </div>
                 </div>
