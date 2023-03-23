@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "../../Component/Navbar/navbar";
 import Footer from "../../Component/Footer/footer";
-import CardSwiper from "../../Component/CardSwiper/cardswiper"
+import CardSwiper from "../../Component/CardSwiper/cardswiper";
 import lp1 from "../../Assets/LandingPage/lp1.PNG";
 import lp2 from "../../Assets/LandingPage/lp2.PNG";
-import lp3 from "../../Assets/LandingPage/lp3.PNG"
-import iconch from "../../Assets/LandingPage/iconch.PNG"
-import iconch2 from "../../Assets/LandingPage/iconch2.PNG"
+import lp3 from "../../Assets/LandingPage/lp3.PNG";
+import iconch from "../../Assets/LandingPage/iconch.PNG";
+import iconch2 from "../../Assets/LandingPage/iconch2.PNG";
 import { Link } from "react-router-dom";
 
 export default function Home() {
@@ -22,7 +22,18 @@ export default function Home() {
             <p className="p-2" style={{ width: "510px" }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.
             </p>
-            <Link type="button" className="btn-2 btn p-3 mt-5 ms-2" style={{ fontSize: "15px" }}>
+            <Link
+              type="button"
+              className="btn-2 btn p-3 mt-5 ms-2"
+              style={{
+                fontSize: "15px",
+                borderColor: "#5E50A1",
+                backgroundColor: "#5E50A1",
+                borderWidth: "2px",
+                color: "white",
+                fontWeight: "700",
+              }}
+            >
               Mulai Dari Sekarang
             </Link>
           </div>
@@ -32,7 +43,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="container mt-5 pt-5">
+      <div className="container-sm  mt-5 pt-5">
         <div className="row">
           <div className="col d-flex justify-content-center align-items-start">
             <img src={lp2} alt="" style={{ maxWidth: "650px" }} />
@@ -42,17 +53,21 @@ export default function Home() {
               Kenapa harus mencari talent di Peworld?
             </h1>
             <div class="p-2">
-              <img src={iconch} alt="" style={{width:'30px'}} className="me-3"/>
-              Lorem ipsum dolor sit amet.</div>
+              <img src={iconch} alt="" style={{ width: "30px" }} className="me-3" />
+              Lorem ipsum dolor sit amet.
+            </div>
             <div class="p-2">
-            <img src={iconch} alt="" style={{width:'30px'}} className="me-3"/>
-            Lorem ipsum dolor sit amet.</div>
+              <img src={iconch} alt="" style={{ width: "30px" }} className="me-3" />
+              Lorem ipsum dolor sit amet.
+            </div>
             <div class="p-2">
-            <img src={iconch} alt="" style={{width:'30px'}} className="me-3"/>
-            Lorem ipsum dolor sit amet.</div>
+              <img src={iconch} alt="" style={{ width: "30px" }} className="me-3" />
+              Lorem ipsum dolor sit amet.
+            </div>
             <div class="p-2">
-            <img src={iconch} alt="" style={{width:'30px'}} className="me-3"/>
-            Lorem ipsum dolor sit amet.</div>
+              <img src={iconch} alt="" style={{ width: "30px" }} className="me-3" />
+              Lorem ipsum dolor sit amet.
+            </div>
           </div>
         </div>
       </div>
@@ -60,7 +75,7 @@ export default function Home() {
       <div className="container mt-5 pt-5">
         <div className="row">
           <div className="col d-flex flex-column align-items-start">
-          <h1 className="p-2 mt-5" style={{ width: "500px" }}>
+            <h1 className="p-2 mt-5" style={{ width: "500px" }}>
               Skill Talent
             </h1>
             <p className="p-2" style={{ width: "560px" }}>
@@ -68,47 +83,47 @@ export default function Home() {
             </p>
             <div className="row d-flex">
               <div className="col d-flex">
-              <img src={iconch2} alt="" style={{width:'30px'}} className="me-3"/>
-              Java
+                <img src={iconch2} alt="" style={{ width: "30px" }} className="me-3" />
+                Java
               </div>
-              <div className="col d-flex" style={{marginLeft:'150px'}}>
-              <img src={iconch2} alt="" style={{width:'30px'}} className="me-3"/>
-              Golang
-              </div>
-            </div>
-            <div className="row d-flex mt-4">
-              <div className="col d-flex">
-              <img src={iconch2} alt="" style={{width:'30px'}} className="me-3"/>
-              Kotlin
-              </div>
-              <div className="col d-flex" style={{marginLeft:'137px'}}>
-              <img src={iconch2} alt="" style={{width:'30px'}} className="me-3"/>
-              C++
+              <div className="col d-flex" style={{ marginLeft: "150px" }}>
+                <img src={iconch2} alt="" style={{ width: "30px" }} className="me-3" />
+                Golang
               </div>
             </div>
             <div className="row d-flex mt-4">
               <div className="col d-flex">
-              <img src={iconch2} alt="" style={{width:'30px'}} className="me-3"/>
-              PHP
+                <img src={iconch2} alt="" style={{ width: "30px" }} className="me-3" />
+                Kotlin
               </div>
-              <div className="col d-flex" style={{marginLeft:'150px'}}>
-              <img src={iconch2} alt="" style={{width:'30px'}} className="me-3"/>
-              Ruby
+              <div className="col d-flex" style={{ marginLeft: "137px" }}>
+                <img src={iconch2} alt="" style={{ width: "30px" }} className="me-3" />
+                C++
               </div>
             </div>
             <div className="row d-flex mt-4">
               <div className="col d-flex">
-              <img src={iconch2} alt="" style={{width:'30px'}} className="me-3"/>
-              Javascript
+                <img src={iconch2} alt="" style={{ width: "30px" }} className="me-3" />
+                PHP
               </div>
-              <div className="col d-flex" style={{marginLeft:'31px', width:'300px'}}>
-              <img src={iconch2} alt="" style={{width:'30px'}} className="me-3"/>
-              10+ Bahasa lainnya
+              <div className="col d-flex" style={{ marginLeft: "150px" }}>
+                <img src={iconch2} alt="" style={{ width: "30px" }} className="me-3" />
+                Ruby
+              </div>
+            </div>
+            <div className="row d-flex mt-4">
+              <div className="col d-flex">
+                <img src={iconch2} alt="" style={{ width: "30px" }} className="me-3" />
+                Javascript
+              </div>
+              <div className="col d-flex" style={{ marginLeft: "31px", width: "300px" }}>
+                <img src={iconch2} alt="" style={{ width: "30px" }} className="me-3" />
+                10+ Bahasa lainnya
               </div>
             </div>
           </div>
           <div className="col d-flex flex-column">
-          <img src={lp3} alt="" style={{ maxWidth: "650px" }} />
+            <img src={lp3} alt="" style={{ maxWidth: "650px" }} />
           </div>
         </div>
       </div>
@@ -118,24 +133,38 @@ export default function Home() {
           <h1>Their opinion about peworld</h1>
         </div>
         <div className="col">
-            <CardSwiper />
+          <CardSwiper />
         </div>
       </div>
 
       <div className="container-fluid mt-5 pt-5">
-        <div className="cont-1 container d-flex align-items-center" style={{height:'250px',backgroundColor:'#5E50A1', color:'white', borderTopRightRadius:'10px',borderTopLeftRadius:'60px', borderBottomLeftRadius:'10px', borderBottomRightRadius:'60px'}}>
-            <div className="col d-flex align-items-center justify-content-start ms-5">
-            <h1 style={{width:'350px'}}>Lorem ipsum dolor sit amet</h1>
-            </div>
-            <div className="col d-flex align-items-center justify-content-end me-5">
-            <Link type="button" className="btn-3 btn p-4" style={{ fontSize: "20px" }}>
+        <div
+          className="cont-1 container d-flex align-items-center"
+          style={{ height: "250px", backgroundColor: "#5E50A1", color: "white", borderTopRightRadius: "10px", borderTopLeftRadius: "60px", borderBottomLeftRadius: "10px", borderBottomRightRadius: "60px" }}
+        >
+          <div className="col d-flex align-items-center justify-content-start ms-5">
+            <h1 style={{ width: "350px" }}>Lorem ipsum dolor sit amet</h1>
+          </div>
+          <div className="col d-flex align-items-center justify-content-end me-5">
+            <Link
+              type="button"
+              className="btn-3 btn p-4"
+              style={{
+                fontSize: "20px",
+                borderColor: "white",
+                backgroundColor:'white',
+                borderWidth: "2px",
+                color: "#5E50A1",
+                fontWeight: "700",
+              }}
+            >
               Mulai Dari Sekarang
             </Link>
-            </div>
+          </div>
         </div>
       </div>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }
