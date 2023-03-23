@@ -66,7 +66,7 @@ export default function Login() {
                       />
                     </div>
                     <div className="mb-3 d-flex justify-content-end">
-                      <Link className="text-center" to={"/auth/sendEmail"}>
+                      <Link className="text-center" to={"/auth/send-email"}>
                         Lupa kata sandi?
                       </Link>
                     </div>
@@ -79,11 +79,11 @@ export default function Login() {
                   <div className="mt-5 d-flex justify-content-center">
                     <p>
                       Anda belum punya akun?
-                      <Link to={"/auth/registerPekerja"}>
+                      <Link to={"/auth/register-pekerja"}>
                         {" "}
                         Daftar sebagai pekerja
                       </Link>
-                      <Link to={"/auth/registerPerekrut"}>
+                      <Link to={"/auth/register-perekrut"}>
                         {" "}
                         / Daftar sebagai perekrut
                       </Link>

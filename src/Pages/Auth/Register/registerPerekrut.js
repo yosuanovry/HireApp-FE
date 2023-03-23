@@ -1,10 +1,29 @@
-import React from "react";
+// import {useState} from "react";
 import { Link } from "react-router-dom";
+// import { useDispatch } from "react-redux";
+// import { regristerPerekrut } from "../../../Storages/Actions/Auth";
 import imgBgLogin from "../../../Assets/Auth/img-bg-login.png";
 import bgLogin from "../../../Assets/Auth/bg-login.png";
 import logoLogin from "../../../Assets/Auth/logo-icon.png";
 
 export default function RegisterPerekrut() {
+  // const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [perusahaan, setPerusahaan] = useState("");
+  // const [jabatan, setJabatan] = useState("");
+  // const [phone, setPhone] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
+
+  // console.log(name);
+  // console.log(email);
+  // console.log(perusahaan);
+  // console.log(name);
+  // console.log(name)
+
+
   return (
     <div className="container-fluid">
       <div className="p-5 ms-5 me-5">
