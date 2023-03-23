@@ -11,7 +11,7 @@ export default function EditProfileWorkers() {
       <NavbarCorporate />
       <div className="">
         <div
-          className="container-fluid card border-0 z-index-1 position-absolute"
+          className="container-fluid border-0 z-index-1 position-absolute"
           style={{
             height: "35vh",
             backgroundColor: "#5E50A1",
@@ -19,7 +19,7 @@ export default function EditProfileWorkers() {
         ></div>
         <div
           className="container z-index-2 position-absolute top-50 start-50 translate-middle"
-          style={{ height: "70vh", marginTop: "7vh" }}
+          style={{ height: "70vh", marginTop: "10vh" }}
         >
           <div
             className="container"
@@ -29,7 +29,7 @@ export default function EditProfileWorkers() {
               <div className="col-4">
                 <div className="row">
                   <div
-                    className="card border-0 rounded-4 "
+                    className="border-0 rounded-4 "
                     style={{ backgroundColor: "white" }}
                   >
                     <div className="d-flex align-items-center justify-content-center p-5">
@@ -75,7 +75,7 @@ export default function EditProfileWorkers() {
               </div>
               <div className="col-8">
                 <div
-                  className="card border-0 rounded-4 "
+                  className="border-0 rounded-4 "
                   style={{
                     backgroundColor: "white",
                     minHeight: "15vh",
@@ -140,7 +140,7 @@ export default function EditProfileWorkers() {
                 </div>
 
                 <div
-                  className="card border-0 rounded-4 mt-3"
+                  className="border-0 rounded-4 mt-5"
                   style={{
                     backgroundColor: "white",
                     minHeight: "15vh",
@@ -149,35 +149,13 @@ export default function EditProfileWorkers() {
                   <div className="row">
                     <div className="p-5">
                       <div className="border-bottom border-2 ">
-                        <h4 className="">Skill</h4>
+                        <h4 className="">Data diri</h4>
                       </div>
                       <form>
                         <div className="mt-3 mb-3">
-                          <input
-                            type="text"
-                            className="form-control p-3"
-                            placeholder="Masukan nama lengkap"
-                          />
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  className="card border-0 rounded-4 mt-3"
-                  style={{
-                    backgroundColor: "white",
-                    minHeight: "15vh",
-                  }}
-                >
-                  <div className="row">
-                    <div className="p-5">
-                      <div className="border-bottom border-2 ">
-                        <h4 className="">Pengalaman kerja</h4>
-                      </div>
-                      <form>
-                        <div className="mt-3 mb-3">
+                          <label className="form-label ms-2">
+                            Nama Lengkap
+                          </label>
                           <input
                             type="text"
                             className="form-control p-3"

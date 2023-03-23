@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
 import Footer from "../../Component/Footer/footerCorporate";
@@ -9,7 +10,7 @@ export default function EditProfileCorporate() {
       <NavbarCorporate />
       <div className="">
         <div
-          className="container-fluid card border-0 z-index-1 position-absolute"
+          className="container-fluid border-0 z-index-1 position-absolute"
           style={{
             height: "35vh",
             backgroundColor: "#5E50A1",
@@ -27,7 +28,7 @@ export default function EditProfileCorporate() {
               <div className="col-4">
                 <div className="row">
                   <div
-                    className="card border-0 rounded-4 "
+                    className="border-0 rounded-4 "
                     style={{ backgroundColor: "white" }}
                   >
                     <div className="d-flex align-items-center justify-content-center p-5">
@@ -69,11 +70,11 @@ export default function EditProfileCorporate() {
               </div>
               <div className="col-8">
                 <div
-                  className="card border-0 rounded-4 "
+                  className="border-0 rounded-4 "
                   style={{
                     backgroundColor: "white",
-                    minHeight: "155vh",
-                    maxHeight: "155vh",
+                    minHeight: "135vh",
+                    maxHeight: "135vh",
                   }}
                 >
                   <div className="row">
