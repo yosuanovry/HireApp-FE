@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
 import Footer from "../../Component/Footer/footerCorporate";
@@ -54,7 +53,7 @@ export default function EditProfileCorporate() {
                   </div>
                   <button
                     type="button"
-                    className="btn text-white mt-5 p-3"
+                    className="btn text-white mt-3 p-3"
                     style={{ background: "#5E50A1" }}
                   >
                     Simpan
@@ -73,7 +72,7 @@ export default function EditProfileCorporate() {
                   className="border-0 rounded-4 "
                   style={{
                     backgroundColor: "white",
-                    minHeight: "135vh",
+                    minHeight: "1000px",
                     maxHeight: "135vh",
                   }}
                 >
@@ -165,7 +164,9 @@ export default function EditProfileCorporate() {
           </div>
         </div>
       </div>
-      <Footer />
+    <div style={{marginTop:'1700px'}}>
+      <Footer/>
+      </div>
     </div>
   );
 }
