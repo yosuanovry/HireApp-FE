@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
 import Footer from "../../Component/Footer/footerCorporate";

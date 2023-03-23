@@ -7,9 +7,7 @@ import AuthRegisterPerekrut from "../Pages/Auth/Register/registerPerekrut";
 import AuthConfirmPassword from "../Pages/Auth/ResetPassword/confirmPassword";
 import AuthSendEmail from "../Pages/Auth/ResetPassword/sendEmail";
 import AuthSendOtp from "../Pages/Auth/ResetPassword/sendOtp";
-
 import EditProfileCorporate from "../Pages/Corporate/editProfileCorporate";
-
 import EditProfileWorkers from "../Pages/Workers/editProfileWorkers";
 
 

@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-// import {useState} from "react";
-import { Link } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { regristerPerekrut } from "../../../Storages/Actions/Auth";
-=======
 import {React, useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { registerUserPerekrut } from "../../../Storages/Actions/AuthPerekrut";
->>>>>>> 172106a1b9c04c75968e8d3df83fe6bcc130b039
 import imgBgLogin from "../../../Assets/Auth/img-bg-login.png";
 import bgLogin from "../../../Assets/Auth/bg-login.png";
 import logoLogin from "../../../Assets/Auth/logo-icon.png";
@@ -16,24 +9,6 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export default function RegisterPerekrut() {
-<<<<<<< HEAD
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [perusahaan, setPerusahaan] = useState("");
-  // const [jabatan, setJabatan] = useState("");
-  // const [phone, setPhone] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
-
-  // console.log(name);
-  // console.log(email);
-  // console.log(perusahaan);
-  // console.log(name);
-  // console.log(name)
-
-=======
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -71,7 +46,6 @@ export default function RegisterPerekrut() {
   console.log(phone);
   console.log(company);
   console.log(department);
->>>>>>> 172106a1b9c04c75968e8d3df83fe6bcc130b039
 
   return (
     <div className="container-fluid">

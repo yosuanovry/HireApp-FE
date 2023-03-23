@@ -2,11 +2,11 @@ import React from "react";
 import Navbar from "../../Component/Navbar/navbar";
 import Footer from "../../Component/Footer/footer";
 import CardSwiper from "../../Component/CardSwiper/cardswiper";
-import lp1 from "../../Assets/LandingPage/lp1.PNG";
-import lp2 from "../../Assets/LandingPage/lp2.PNG";
-import lp3 from "../../Assets/LandingPage/lp3.PNG";
-import iconch from "../../Assets/LandingPage/iconch.PNG";
-import iconch2 from "../../Assets/LandingPage/iconch2.PNG";
+import lp1 from "../../Assets/LandingPage/lp1.png";
+import lp2 from "../../Assets/LandingPage/lp2.png";
+import lp3 from "../../Assets/LandingPage/lp3.png";
+import iconch from "../../Assets/LandingPage/iconch.png";
+import iconch2 from "../../Assets/LandingPage/iconch2.png";
 import { Link } from "react-router-dom";
 
 export default function Home() {
