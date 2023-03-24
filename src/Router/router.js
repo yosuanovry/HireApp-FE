@@ -11,6 +11,8 @@ import AuthSendEmail from "../Pages/Auth/ResetPassword/sendEmail";
 import AuthSendOtp from "../Pages/Auth/ResetPassword/sendOtp";
 import EditProfileCorporate from "../Pages/Corporate/editProfileCorporate";
 import EditProfileWorkers from "../Pages/Workers/editProfileWorkers";
+import ProfilePortofolio from "../Pages/Home/profilePortofolio"
+import HalamanHire from "../Pages/Home/halamanHire"
 
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
         <Route path="/auth/send-otp" element={<AuthSendOtp />} />
         <Route path="/edit/profile-corporate" element={<EditProfileCorporate />} />
         <Route path="/edit/profile-workers" element={<EditProfileWorkers />} />
+        <Route path="/profile-portofolio" element={<ProfilePortofolio />} />
+        <Route path="/profile-hire" element={<HalamanHire />} />
       </Routes>
     </BrowserRouter>
   );
