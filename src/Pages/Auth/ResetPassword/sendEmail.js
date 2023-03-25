@@ -1,9 +1,29 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import imgBgLogin from "../../../Assets/Auth/img-bg-login.png";
 import bgLogin from "../../../Assets/Auth/bg-login.png";
 import logoLogin from "../../../Assets/Auth/logo-icon.png";
+import {sendEmail} from "../../../Storages/Actions/ResetPassword"
 
 export default function SendEmail() {
+  const [email, setEmail] = useState('')
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    localStorage.setItem('email', email);
+  },[email])
+
+  const handleEmail = (e) => {
+    e.preventDefault();
+    let data = {
+      email
+    };
+    dispatch(sendEmail(data, navigate));
+  };
+
   return (
     <div className="container-fluid">
       <div className="p-5 ms-5 me-5">
@@ -45,10 +65,14 @@ export default function SendEmail() {
                   <h5 className="mb-5">
                     You need to change your password to activate your account
                   </h5>
-                  <form className="mt-5">
+                  <form className="mt-5" onSubmit={handleEmail}>
                     <div className="col mb-4">
                       <label className="form-label">Email</label>
                       <input
+                        required
+                        name="email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
                         type="email"
                         className="form-control p-3"
                         placeholder="Masukan alamat email"
