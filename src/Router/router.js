@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Home from "../Pages/Home/landingPage";
+import HomePerekrut from "../Pages/Home/homePerekrut";
+import HomePerekrutSort from "../Pages/Home/homePerekrutSort";
 import AuthLoginPekerja from "../Pages/Auth/Login/loginPekerja";
 import AuthLoginPerekrut from "../Pages/Auth/Login/loginPerekrut";
 import AuthRegisterPekerja from "../Pages/Auth/Register/registerPekerja";
@@ -11,6 +13,9 @@ import EditProfileCorporate from "../Pages/Corporate/editProfileCorporate";
 import EditProfileWorkers from "../Pages/Workers/editProfileWorkers";
 import EditDetailProfileWorkers from "../Pages/Workers/editDetailProfileWorkers";
 import ChateWorkers from "../Pages/Workers/chatWorkers";
+import ProfilePortofolio from "../Pages/Home/profilePortofolio"
+import HalamanHire from "../Pages/Home/halamanHire"
+
 
 function App() {
   return (
@@ -18,6 +23,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="home" replace="true" />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/home-perekrut" element={< HomePerekrut />} />
+        <Route path="/home-perekrut-sort" element={< HomePerekrutSort />} />
         <Route path="/auth/login-pekerja" element={<AuthLoginPekerja />} />
         <Route path="/auth/login-perekrut" element={<AuthLoginPerekrut />} />
         <Route
@@ -47,6 +54,8 @@ function App() {
           path="/chat-workers"
           element={<ChateWorkers />}
         />
+        <Route path="/profile-portofolio" element={<ProfilePortofolio />} />
+        <Route path="/profile-hire" element={<HalamanHire />} />
       </Routes>
     </BrowserRouter>
   );

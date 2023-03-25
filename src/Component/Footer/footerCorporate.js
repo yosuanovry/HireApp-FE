@@ -9,6 +9,7 @@ export default function Footer() {
         style={{
           minHeight: "500px",
           backgroundColor: "#5E50A1",
+          marginTop: "60px",
           position: "relative",
         }}
       >

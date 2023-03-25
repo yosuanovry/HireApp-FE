@@ -59,7 +59,7 @@ export default function EditProfileCorporate() {
                   </div>
                   <button
                     type="button"
-                    className="btn text-white mt-5 p-3"
+                    className="btn text-white mt-3 p-3"
                     style={{ background: "#5E50A1" }}
                   >
                     Simpan
@@ -78,7 +78,7 @@ export default function EditProfileCorporate() {
                   className="border border-light-subtle rounded-4"
                   style={{
                     backgroundColor: "white",
-                    minHeight: "135vh",
+                    minHeight: "1000px",
                     maxHeight: "135vh",
                   }}
                 >

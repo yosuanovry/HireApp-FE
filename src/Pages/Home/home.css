@@ -1,0 +1,24 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  background-color: #f7f7f7;
+}
+
+body {
+  background-color: #f7f7f7;
+}
+
+.inp-1 {
+  width: 40vw;
+  border-radius: 10px;
+  box-shadow: -3px 8px 48px -21px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -3px 8px 48px -21px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -3px 8px 48px -21px rgba(0, 0, 0, 0.75);
+}
+
+.boxsh {
+  box-shadow: 3px 5px 43px -19px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 3px 5px 43px -19px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 5px 43px -19px rgba(0,0,0,0.75);
+}
