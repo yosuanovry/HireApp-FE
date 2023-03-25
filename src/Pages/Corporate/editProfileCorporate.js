@@ -1,23 +1,27 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
 import Footer from "../../Component/Footer/footerCorporate";
 import IconProfile from "../../Assets/NavCorporate/louisth.png";
+import IconEdit from "../../Assets/Profile/edit.png";
+
 // import { Button } from "bootstrap";
 export default function EditProfileCorporate() {
   return (
     <div style={{ background: "#E5E5E5" }}>
+      {/* navbar component */}
       <NavbarCorporate />
       <div className="">
         <div
-          className="container-fluid border-0 z-index-1 position-absolute"
+          className="container-fluid z-index-1 position-absolute"
           style={{
             height: "35vh",
             backgroundColor: "#5E50A1",
           }}
         ></div>
         <div
-          className="container z-index-2 position-absolute top-50 start-50 translate-middle"
-          style={{ height: "70vh", marginTop: "7vh" }}
+          className="container-fluid z-index-2 position-absolute top-50 start-50 translate-middle"
+          style={{ height: "80vh", marginTop: "7vh" }}
         >
           <div
             className="container"
@@ -25,7 +29,7 @@ export default function EditProfileCorporate() {
           >
             <div className="row">
               <div className="col-4">
-                <div className="row">
+                <div className="row border border-light-subtle rounded-4">
                   <div
                     className="border-0 rounded-4 "
                     style={{ backgroundColor: "white" }}
@@ -33,7 +37,9 @@ export default function EditProfileCorporate() {
                     <div className="d-flex align-items-center justify-content-center p-5">
                       <div className="row">
                         <div className="mb-0 text-center">
-                          <h6>Edit</h6>
+                          <h6>
+                            <img className="img me-1" src={IconEdit}></img>Edit
+                          </h6>
                         </div>
                         <div className=" mx-auto text-center">
                           <img
@@ -69,7 +75,7 @@ export default function EditProfileCorporate() {
               </div>
               <div className="col-8">
                 <div
-                  className="border-0 rounded-4 "
+                  className="border border-light-subtle rounded-4"
                   style={{
                     backgroundColor: "white",
                     minHeight: "1000px",
@@ -164,8 +170,14 @@ export default function EditProfileCorporate() {
           </div>
         </div>
       </div>
-    <div style={{marginTop:'1700px'}}>
-      <Footer/>
+      {/* footer */}
+      <div
+        className="container-fluid z-index-2 position-absolute top-50 start-50 translate-middle"
+        style={{
+          marginTop: "1700px",
+        }}
+      >
+        <Footer />
       </div>
     </div>
   );
