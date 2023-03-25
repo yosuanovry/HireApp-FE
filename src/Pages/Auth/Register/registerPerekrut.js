@@ -9,12 +9,12 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export default function RegisterPerekrut() {
-  const [name, setName] = useState("");
+  const [nama, setNama] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
-  const [company, setCompany] = useState("");
-  const [department, setDepartment] = useState("");
+  const [perusahaan, setPerusahaan] = useState("");
+  const [jabatan, setJabatan] = useState("");
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -30,22 +30,22 @@ export default function RegisterPerekrut() {
   const Register = (e) => {
     e.preventDefault();
     let data = {
-      name,
+      nama,
       email,
       password,
       phone,
-      company,
-      department
+      perusahaan,
+      jabatan
     };
     dispatch(registerUserPerekrut(data));
   };
 
-  console.log(name);
+  console.log(nama);
   console.log(email);
   console.log(password);
   console.log(phone);
-  console.log(company);
-  console.log(department);
+  console.log(perusahaan);
+  console.log(jabatan);
 
   return (
     <div className="container-fluid">
@@ -94,11 +94,12 @@ export default function RegisterPerekrut() {
                       <label className="form-label">Nama</label>
                       <input
                         name="nama" 
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={(e) => setNama(e.target.value)}
                         required
                         type="text"
                         className="form-control p-3"
                         placeholder="Masukan nama panjang"
+                        value={nama}
                       />
                     </div>
                     <div className="col mb-4">
@@ -110,28 +111,31 @@ export default function RegisterPerekrut() {
                         type="email"
                         className="form-control p-3"
                         placeholder="Masukan alamat email"
+                        value={email}
                       />
                     </div>
                     <div className="col mb-4">
                       <label className="form-label">Perusahaan</label>
                       <input
-                        name="company" 
-                        onChange={(e) => setCompany(e.target.value)}
+                        name="perusahaan" 
+                        onChange={(e) => setPerusahaan(e.target.value)}
                         required
-                        type="email"
+                        type="text"
                         className="form-control p-3"
                         placeholder="Masukan nama perusahaan"
+                        value={perusahaan}
                       />
                     </div>
                     <div className="col mb-4">
                       <label className="form-label">Jabatan</label>
                       <input
-                        name="department" 
-                        onChange={(e) => setDepartment(e.target.value)}
+                        name="jabatan" 
+                        onChange={(e) => setJabatan(e.target.value)}
                         required
                         type="text"
                         className="form-control p-3"
                         placeholder="Posisi di perusahaan Anda"
+                        value={jabatan}
                       />
                     </div>
                     <div className="col mb-4">
@@ -143,6 +147,7 @@ export default function RegisterPerekrut() {
                         type="text"
                         className="form-control p-3"
                         placeholder="Masukan no handphone"
+                        value={phone}
                       />
                     </div>
                     <div className="col mb-3">
@@ -154,6 +159,7 @@ export default function RegisterPerekrut() {
                         type="password"
                         className="form-control p-3"
                         placeholder="Masukan kata sandi"
+                        value={password}
                       />
                     </div>
                     <div className="col mb-3">
@@ -167,6 +173,7 @@ export default function RegisterPerekrut() {
                         type="password"
                         className="form-control p-3"
                         placeholder="Masukan Konfirmasi kata sandi"
+                        value={password}
                       />
                     </div>
                     <div className="col mb-3">
@@ -177,7 +184,7 @@ export default function RegisterPerekrut() {
                   </form>
                   <div className="col my-2 mt-5 d-flex justify-content-center">
                     <p>
-                      Anda sudah punya akun?<Link to={'/auth/login'}> Masuk disini</Link>
+                      Anda sudah punya akun?<Link to={'/auth/login-perekrut'}> Masuk disini</Link>
                     </p>
                   </div>
                 </div>

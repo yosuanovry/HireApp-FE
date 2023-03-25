@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export default function RegisterPekerja() {
-  const [nama, setNama] = useState("");
+  const [nama, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
@@ -73,23 +73,23 @@ export default function RegisterPekerja() {
                   <form className="mt-5" onSubmit={confirmRegister}>
                     <div className="mb-4">
                       <label className="form-label">Nama</label>
-                      <input name="nama" onChange={(e) => setNama(e.target.value)} required type="text" className="form-control p-3" placeholder="Masukan nama panjang" />
+                      <input value={nama} name="nama" onChange={(e) => setName(e.target.value)} required type="text" className="form-control p-3" placeholder="Masukan nama panjang" />
                     </div>
                     <div className="mb-4">
                       <label className="form-label">Email</label>
-                      <input name="email" onChange={(e) => setEmail(e.target.value)} required type="email" className="form-control p-3" placeholder="Masukan alamat email" />
+                      <input value={email} name="email" onChange={(e) => setEmail(e.target.value)} required type="email" className="form-control p-3" placeholder="Masukan alamat email" />
                     </div>
                     <div className="mb-4">
                       <label className="form-label">No handphone</label>
-                      <input name="phone" onChange={(e) => setPhone(e.target.value)} required type="text" className="form-control p-3" placeholder="Masukan no handphone" />
+                      <input value={phone} name="phone" onChange={(e) => setPhone(e.target.value)} required type="text" className="form-control p-3" placeholder="Masukan no handphone" />
                     </div>
                     <div className="mb-3">
                       <label className="form-label">Kata Sandi</label>
-                      <input name="password" onChange={(e) => setPassword(e.target.value)} required type="password" className="form-control p-3" placeholder="Masukan kata sandi" />
+                      <input value={password} name="password" onChange={(e) => setPassword(e.target.value)} required type="password" className="form-control p-3" placeholder="Masukan kata sandi" />
                     </div>
                     <div className="mb-3">
                       <label className="form-label">Konfirmasi Kata Sandi</label>
-                      <input name="password" onChange={(e) => setPassword(e.target.value)} required type="password" className="form-control p-3" placeholder="Masukan Konfirmasi kata sandi" />
+                      <input value={password} name="password" onChange={(e) => setPassword(e.target.value)} required type="password" className="form-control p-3" placeholder="Masukan Konfirmasi kata sandi" />
                     </div>
                     <div className="mb-3">
                       <button className="btn btn-warning text-white shadow-none p-3 w-100">Daftar</button>
@@ -97,7 +97,7 @@ export default function RegisterPekerja() {
                   </form>
                   <div className="my-2 mt-5 d-flex justify-content-center">
                     <p>
-                      Anda sudah punya akun?<Link to={"/auth/login"}> Masuk disini</Link>
+                      Anda sudah punya akun?<Link to={"/auth/login-pekerja"}> Masuk disini</Link>
                     </p>
                   </div>
                 </div>

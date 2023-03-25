@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import imgBgLogin from "../../../Assets/Auth/img-bg-login.png";
 import bgLogin from "../../../Assets/Auth/bg-login.png";
@@ -12,6 +12,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const Login = (e) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ export default function Login() {
       email,
       password,
     };
-    dispatch(loginUserPerekrut(data));
+    dispatch(loginUserPerekrut(data,navigate));
   };
 
   return (
