@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
 import "./home.css";
 import louisth from "../../Assets/LandingPage/louisth.png";
@@ -7,9 +7,22 @@ import nialh from "../../Assets/LandingPage/nialh.png";
 import liamp from "../../Assets/LandingPage/liamp.png";
 import iconloc from "../../Assets/Profile/mappin.png";
 import Footer from "../../Component/Footer/footerCorporate";
+import { getUserPerekrut } from "../../Storages/Actions/userPerekrut";
+import { useDispatch, useSelector } from 'react-redux';
 // import IconProfile from "../../Assets/NavCorporate/louisth.png";
 
 export default function HomePerekrut() {
+
+  const dispatch = useDispatch()
+
+  const get_user = useSelector((state)=>state.get_UserPerekrut)
+
+  useEffect(() => {
+    dispatch(getUserPerekrut());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+
   return (
     <>
       <NavbarCorporate />
@@ -55,18 +68,19 @@ export default function HomePerekrut() {
         </div>
       </div>
 
-      <div className="container mt-5 pt-5">
+{get_user?.map((item, index) => (
+  <div key={index} className="container mt-5 pt-5">
         <div className="row d-flex align-items-center border-bottom" style={{ backgroundColor: "white", height: "300px" }}>
           <div className="col-2 d-flex justify-content-center">
             <img style={{ width: "150px" }} src={louisth} alt="" />
           </div>
           <div className="col-4">
-            <h3 style={{ fontWeight: "700" }}>Louis Tomlinson</h3>
-            <h5 style={{ marginTop: "15px", color: "#9EA0A5", fontWeight: "400" }}>Web Developer</h5>
+            <h3 style={{ fontWeight: "700" }}>{item.nama}</h3>
+            <h5 style={{ marginTop: "15px", color: "#9EA0A5", fontWeight: "400" }}>{item.jabatan}</h5>
             <div style={{ marginTop: "15px" }} className="d-flex align-items-center flex-rows">
               <img src={iconloc} alt="" style={{ height: "30px" }} />
               <h5 className="ms-3 mt-1" style={{ color: "#9EA0A5", fontWeight: "400" }}>
-                Lorem ipsum
+                {item.email}
               </h5>
             </div>
             <div style={{ marginTop: "15px" }} className="d-flex align-items-center flex-rows">
@@ -97,6 +111,8 @@ export default function HomePerekrut() {
           </div>
         </div>
       </div>
+))}
+      
 
       <div className="container">
         <div className="row d-flex align-items-center border-bottom" style={{ backgroundColor: "white", height: "300px" }}>

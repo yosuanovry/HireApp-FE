@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export default function RegisterPekerja() {
-  const [name, setName] = useState("");
+  const [nama, setNama] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
@@ -22,13 +22,16 @@ export default function RegisterPekerja() {
 
   const confirmRegister = (data) => {
     Register(data);
+    if(console.log(`registerUser error`)) {
+      return `error`
+    }
     handleShow();
   };
 
   const Register = (e) => {
     e.preventDefault();
     let data = {
-      name,
+      nama,
       email,
       password,
       phone,
@@ -36,7 +39,7 @@ export default function RegisterPekerja() {
     dispatch(registerUserPekerja(data));
   };
 
-  console.log(name);
+  console.log(nama);
   console.log(email);
   console.log(password);
   console.log(phone);
@@ -70,7 +73,7 @@ export default function RegisterPekerja() {
                   <form className="mt-5" onSubmit={confirmRegister}>
                     <div className="mb-4">
                       <label className="form-label">Nama</label>
-                      <input name="nama" onChange={(e) => setName(e.target.value)} required type="text" className="form-control p-3" placeholder="Masukan nama panjang" />
+                      <input name="nama" onChange={(e) => setNama(e.target.value)} required type="text" className="form-control p-3" placeholder="Masukan nama panjang" />
                     </div>
                     <div className="mb-4">
                       <label className="form-label">Email</label>
