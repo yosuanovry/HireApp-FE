@@ -5,16 +5,15 @@ import Footer from "../../Component/Footer/footerCorporate";
 import IconProfile from "../../Assets/NavCorporate/louisth.png";
 import IconMap from "../../Assets/Profile/mappin.png";
 import IconEdit from "../../Assets/Profile/edit.png";
-// import IconUploadImg from "../../Assets/Profile/sendimg.png"
-
+import IconExp from "../../Assets/Profile/tokpet.png"
 // import { Button } from "bootstrap";
-export default function EditProfileWorkers() {
+export default function EditDetailProfile() {
   return (
     <div style={{ background: "#E5E5E5" }}>
       <NavbarCorporate />
       <div className="">
         <div
-          className="container-fluid border-0 z-index-1 position-absolute"
+          className="container-fluid z-index-1 position-absolute"
           style={{
             height: "35vh",
             backgroundColor: "#5E50A1",
@@ -25,7 +24,7 @@ export default function EditProfileWorkers() {
           style={{ height: "80vh", marginTop: "7vh" }}
         >
           <div
-            className="container"
+            className="container "
             style={{ position: "relative", height: "" }}
           >
             <div className="row">
@@ -35,12 +34,12 @@ export default function EditProfileWorkers() {
                     className="border-0 rounded-4 "
                     style={{ backgroundColor: "white" }}
                   >
-                    <div className="d-flex align-items-center justify-content-center p-5">
+                    <div className="d-flex align-items-center justify-content-center p-5 ">
                       <div className="row">
                         <div className=" mx-auto text-center">
                           <img
                             src={IconProfile}
-                            className="rounded-circle"
+                            className="img img-fluid rounded-circle"
                             alt={IconProfile}
                             style={{ minWidth: "10vh", maxWidth: "12vh" }}
                           />
@@ -81,7 +80,7 @@ export default function EditProfileWorkers() {
               <div className="col-8">
                 {/* Data Diri */}
                 <div
-                  className="border border-light-subtle rounded-4 "
+                  className="container border border-light-subtle rounded-4 "
                   style={{
                     backgroundColor: "white",
                     minHeight: "15vh",
@@ -198,6 +197,38 @@ export default function EditProfileWorkers() {
                       <div className="border-bottom border-2 ">
                         <h4 className="">Pengalaman kerja</h4>
                       </div>
+                      <div>
+                        <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                          <button
+                            className="btn btn-warning text-white me-md-2 p-3"
+                            type="button"
+                          >
+                            Edit
+                          </button>
+                          <button className="btn btn-danger p-3" type="button">
+                            X
+                          </button>
+                        </div>
+                        <div>
+                          <div className="row d-flex align-items-start">
+                            <div className="col-3 d-flex justify-content-center ">
+                              <img src={IconExp} className="" />
+                            </div>
+                            <div className="col-8 border-bottom border-2">
+                              <h4>Web Developer</h4>
+                              <h6>Tokopedia</h6>
+                              <p>July 2019 - January 2020 6 months</p>
+                              <h6 className="">
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Vestibulum erat orci, mollis
+                                nec gravida sed, ornare quis urna. Curabitur eu
+                                lacus fringilla, vestibulum risus at.
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                       <form>
                         <div className="mt-3 mb-3">
                           <label className="form-label ms-2">Posisi</label>
@@ -272,6 +303,42 @@ export default function EditProfileWorkers() {
                   </div>
                 </div>
 
+                <div
+                  className="container border border-light-subtle rounded-4 mt-4"
+                  style={{
+                    backgroundColor: "white",
+                    minHeight: "15vh",
+                  }}
+                >
+                  <div className="row">
+                    <div className="p-5">
+                      <div className="border-bottom border-2 ">
+                        <h4 className="">Pengalaman kerja</h4>
+                      </div>
+                      <div>
+                        <div className="d-grid gap-4 d-md-flex justify-content-md-end mt-4">
+                          <div className="col-2 d-flex justify-content-center ">
+                            <img src={IconExp} className="" />
+                          </div>
+                          <div className=" col-6">
+                            <h6>Tokopedia</h6>
+                            <h6>Tokopedia</h6>
+                          </div>
+                          <button
+                            className="btn btn-warning text-white me-md-2 p-3"
+                            type="button"
+                          >
+                            Edit
+                          </button>
+                          <button className="btn btn-danger p-3" type="button">
+                            X
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Portofolio */}
                 <div
                   className="container border border-light-subtle rounded-4 mt-4"
@@ -337,17 +404,15 @@ export default function EditProfileWorkers() {
                           </div>
                         </div>
 
-                        <div className="container">
+                        <div className="container mt-3">
                           <label className="form-label ms-2">
-                            Upload gambar
+                            Type portofolio
                           </label>
-                          <div className="border border-2 position-relative">
+                          <div className="card border-0 position-relative">
                             <div
-                              className="rounded w-100"
+                              className="card rounded w-100 bg-light"
                               style={{ height: "350px" }}
-                            >
-                              
-                            </div>
+                            ></div>
                             <div
                               action="/file-upload"
                               className="dropzone position-absolute top-50 start-50 translate-middle text-center ms-5 text-black"
@@ -383,7 +448,7 @@ export default function EditProfileWorkers() {
       <div
         className="container-fluid z-index-2 position-absolute top-50 start-50 translate-middle"
         style={{
-          marginTop: "3200px",
+          marginTop: "4200px",
         }}
       >
         <Footer />
