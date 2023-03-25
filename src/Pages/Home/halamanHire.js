@@ -7,7 +7,7 @@ import iconloc from "../../Assets/Profile/mappin.png";
 export default function HalamanHire() {
   return (
     <>
-    <div style={{ background: "#f5f4f4" }}>
+    <div className="boxsh" style={{ background: "#f5f4f4" }}>
       <NavbarCorporate />
       <div>
         <div className="container z-index-2 position-absolute top-50 start-50 translate-middle" style={{ height: "70vh", marginTop: "5vh" }}>
