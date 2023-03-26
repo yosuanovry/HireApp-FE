@@ -52,19 +52,19 @@ export default function Home() {
             <h1 className="p-2 mt-5" style={{ width: "600px" }}>
               Kenapa harus mencari talent di Peworld?
             </h1>
-            <div class="p-2">
+            <div className="p-2">
               <img src={iconch} alt="" style={{ width: "30px" }} className="me-3" />
               Lorem ipsum dolor sit amet.
             </div>
-            <div class="p-2">
+            <div className="p-2">
               <img src={iconch} alt="" style={{ width: "30px" }} className="me-3" />
               Lorem ipsum dolor sit amet.
             </div>
-            <div class="p-2">
+            <div className="p-2">
               <img src={iconch} alt="" style={{ width: "30px" }} className="me-3" />
               Lorem ipsum dolor sit amet.
             </div>
-            <div class="p-2">
+            <div className="p-2">
               <img src={iconch} alt="" style={{ width: "30px" }} className="me-3" />
               Lorem ipsum dolor sit amet.
             </div>

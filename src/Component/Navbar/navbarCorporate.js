@@ -32,7 +32,7 @@ function NavbarCorporate() {
                 style={{ maxWidth: "5vh" }}
               />
             </Link>
-            <Link className="me-5" to={"/auth/login"}>
+            <Link className="me-5" to={"/chat-workers"}>
               {" "}
               <img
                 src={iconMail}

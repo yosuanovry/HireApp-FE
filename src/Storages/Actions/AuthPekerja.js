@@ -4,7 +4,7 @@ export const registerUserPekerja = (data,navigate) => async (dispatch) => {
   try {
     dispatch({ type: "USER_REGISTER_PENDING" });
     const result = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}users/register`,
+      `${process.env.REACT_APP_BASE_URL}/users/register`,
       data
     );
     const user = result.data.data;
@@ -20,11 +20,13 @@ export const loginUserPekerja = (data, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "USER_LOGIN_PENDING" });
     const result = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}users/login`,
+      `${process.env.REACT_APP_BASE_URL}/users/login`,
       data
     );
     const user = result.data.data;
     localStorage.setItem("token", user.token);
+    localStorage.setItem("email", user.email);
+    localStorage.setItem("nama", user.nama);
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: user });
     navigate("/edit/profile-workers");
     // navigate("/login");
