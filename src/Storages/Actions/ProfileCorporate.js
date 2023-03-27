@@ -27,13 +27,12 @@ export const getProfileCorporate = (navigate) => async (dispatch) => {
   }
 };
 
-export const putProfileCorporate = (data,navigate) => async (dispatch) => {
+export const putProfileCorporate = (data, navigate) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
     if (!token) navigate("/auth/login-perekrut");
     let headers = {
       headers: {
-        "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
       },
     };
@@ -43,12 +42,12 @@ export const putProfileCorporate = (data,navigate) => async (dispatch) => {
       data,
       headers
     );
-    const payload = result.data;
+    const updateProfile = result.data;
     dispatch({
       type: "UPDATE_PROFILE_CORPORATE_SUCCESS",
-      payload,
+      payload: updateProfile,
     });
-    navigate('/edit/profile-corporate')
+    navigate("/edit/profile-corporate");
   } catch (err) {
     console.log("update profile corp error");
     console.log(err);

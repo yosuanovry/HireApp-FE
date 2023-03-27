@@ -13,27 +13,18 @@ import { putProfileCorporate } from "../../Storages/Actions/ProfileCorporate";
 
 export default function EditProfileCorporate() {
   const corporate = useSelector((state) => state.get_profileCorp);
-  // const updateProfile = useSelector((state) => state.update_profileCorp);
+  const updateProfile = useSelector((state) => state.update_profileCorp);
+
+  const [nama_perusahaan, setNamaPerusahaan] = useState("");
+  const [bidang_perusahaan, setBidangPerusahaan] = useState("");
+  const [kota, setKota] = useState("");
+  const [deskripsi, setDeskripsi] = useState("");
+  const [email, setEmail] = useState("");
+  const [email_perusahaan, setEmailPerusahaan] = useState("");
+  const [phone, setPhone] = useState("");
+  const [provinsi, setProvinsi] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [updateData, setUpdateData] = useState({
-    nama_perusahaan: "",
-    bidang_perusahaan: "",
-    kota: "",
-    deskripsi: "",
-    email: "",
-    email_perusahaan: "",
-    phone: "",
-    provinsi: "",
-  });
-
-  const handleChange = (e) => {
-    setUpdateData({
-      ...updateData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   useEffect(() => {
     dispatch(getProfileCorporate(navigate));
@@ -41,17 +32,18 @@ export default function EditProfileCorporate() {
 
   const UpdateProfileCorporate = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("nama_perusahaan", updateData.nama_perusahaan);
-    formData.append("bidang_perusahaan", updateData.bidang_perusahaan);
-    formData.append("kota", updateData.kota);
-    formData.append("deskripsi", updateData.deskripsi);
-    formData.append("email", updateData.email);
-    formData.append("email_perusahaan", updateData.email_perusahaan);
-    formData.append("phone", updateData.phone);
-    formData.append("provinsi", updateData.provinsi);
-    console.log(formData);
-    dispatch(putProfileCorporate(formData, navigate));
+    const data = {
+      nama_perusahaan,
+      bidang_perusahaan,
+      kota,
+      deskripsi,
+      email,
+      email_perusahaan,
+      phone,
+      provinsi,
+    };
+    console.log(data);
+    dispatch(putProfileCorporate(data,navigate));
   };
 
   return (
@@ -74,7 +66,7 @@ export default function EditProfileCorporate() {
             className="container"
             style={{ position: "relative", height: "" }}
           >
-            {corporate.data?.map((item, index) => (
+            {(corporate||updateProfile).data?.map((item, index) => (
               <form key={index} onSubmit={UpdateProfileCorporate}>
                 <div className="row">
                   <div className="col-4">
@@ -124,6 +116,8 @@ export default function EditProfileCorporate() {
                       >
                         Batal
                       </button>
+                      {updateProfile.isLoading && <p>Loading......</p>}
+                      {updateProfile.errorMessage}
                     </div>
                   </div>
                   {/* Form Input data */}
@@ -147,11 +141,12 @@ export default function EditProfileCorporate() {
                               Nama Perusahaan
                             </label>
                             <input
-                              value={updateData.nama_perusahaan}
+                              type="text"
                               name="nama_perusahaan"
                               required
-                              onChange={handleChange}
-                              type="text"
+                              onChange={(e) =>
+                                setNamaPerusahaan(e.target.value)
+                              }
                               className="form-control p-3"
                               placeholder={item.nama_perusahaan}
                             />
@@ -159,11 +154,12 @@ export default function EditProfileCorporate() {
                           <div className="mb-3">
                             <label className="form-label ms-2">Bidang</label>
                             <input
-                              value={updateData.bidang_perusahaan}
+                              type="text"
                               name="bidang_perusahaan"
                               required
-                              onChange={handleChange}
-                              type="text"
+                              onChange={(e) =>
+                                setBidangPerusahaan(e.target.value)
+                              }
                               className="form-control p-3"
                               placeholder={item.bidang_perusahaan}
                             />
@@ -171,10 +167,9 @@ export default function EditProfileCorporate() {
                           <div className="mb-3">
                             <label className="form-label ms-2">Kota</label>
                             <input
-                              value={updateData.kota}
                               name="kota"
                               required
-                              onChange={handleChange}
+                              onChange={(e) => setKota(e.target.value)}
                               type="text"
                               className="form-control p-3"
                               placeholder={item.kota || "Masukan kota"}
@@ -185,11 +180,10 @@ export default function EditProfileCorporate() {
                               Deskripsi singkat
                             </label>
                             <textarea
-                              value={updateData.deskripsi}
+                              type="text"
                               name="deskripsi"
                               required
-                              onChange={handleChange}
-                              type="text"
+                              onChange={(e) => setDeskripsi(e.target.value)}
                               className="form-control p-3 mt-0"
                               placeholder={
                                 item.deskripsi || "Tuliskan deskripsi singkat"
@@ -200,11 +194,10 @@ export default function EditProfileCorporate() {
                           <div className="mb-3">
                             <label className="form-label ms-2">Email</label>
                             <input
-                              value={updateData.email}
+                              type="email"
                               name="email"
                               required
-                              onChange={handleChange}
-                              type="email"
+                              onChange={(e) => setEmail(e.target.value)}
                               className="form-control p-3"
                               placeholder={item.email || "Masukkan Email "}
                             />
@@ -214,11 +207,12 @@ export default function EditProfileCorporate() {
                               Email Perusahaan
                             </label>
                             <input
-                              value={updateData.email_perusahaan}
+                              type="email"
                               name="email_perusahaan"
                               required
-                              onChange={handleChange}
-                              type="email"
+                              onChange={(e) =>
+                                setEmailPerusahaan(e.target.value)
+                              }
                               className="form-control p-3"
                               placeholder={
                                 item.email_perusahaan ||
@@ -231,11 +225,10 @@ export default function EditProfileCorporate() {
                               Nomor Telepon
                             </label>
                             <input
-                              value={updateData.phone}
+                              type="text"
                               name="phone"
                               required
-                              onChange={handleChange}
-                              type="number"
+                              onChange={(e) => setPhone(e.target.value)}
                               className="form-control p-3"
                               placeholder={
                                 item.phone_perusahaan ||
@@ -246,11 +239,10 @@ export default function EditProfileCorporate() {
                           <div className="mb-3">
                             <label className="form-label ms-2">Linkedin</label>
                             <input
-                              value={updateData.provinsi}
+                              type="text"
                               name="provinsi"
                               required
-                              onChange={handleChange}
-                              type="text"
+                              onChange={(e) => setProvinsi(e.target.value)}
                               className="form-control p-3"
                               placeholder={
                                 item.provinsi || "Masukan nama Linkedin "
