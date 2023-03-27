@@ -1,4 +1,5 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
+import axios from "axios";
 import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
 import "./home.css";
 import louisth from "../../Assets/LandingPage/louisth.png";
@@ -7,21 +8,41 @@ import nialh from "../../Assets/LandingPage/nialh.png";
 import liamp from "../../Assets/LandingPage/liamp.png";
 import iconloc from "../../Assets/Profile/mappin.png";
 import Footer from "../../Component/Footer/footerCorporate";
-import { getUserPerekrut } from "../../Storages/Actions/userPerekrut";
-import { useDispatch, useSelector } from 'react-redux';
+// import { getUserPerekrut } from "../../Storages/Actions/userPerekrut";
+// import { useDispatch, useSelector } from 'react-redux';
 // import IconProfile from "../../Assets/NavCorporate/louisth.png";
 
 export default function HomePerekrut() {
-
-  const dispatch = useDispatch()
-
-  const get_user = useSelector((state)=>state.get_UserPerekrut)
+  const [data, setData] = useState();
+  
+  // const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getUserPerekrut());
+    getUserData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const getUserData = async () => {
+    var url = `${process.env.REACT_APP_BASE_URL}users`;
+    return await axios
+      .get(url, { mode: 'no-cors' })
+      .then((res) => {
+        console.log(res);
+        setData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // const get_user = useSelector((state)=>state.get_UserPerekrut)
+
+  // useEffect(() => {
+  //   dispatch(getUserPerekrut());
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
+  console.log(data);
 
   return (
     <>
@@ -68,7 +89,7 @@ export default function HomePerekrut() {
         </div>
       </div>
 
-{get_user?.map((item, index) => (
+{data?.map((item, index) => (
   <div key={index} className="container mt-5 pt-5">
         <div className="row d-flex align-items-center border-bottom" style={{ backgroundColor: "white", height: "300px" }}>
           <div className="col-2 d-flex justify-content-center">
