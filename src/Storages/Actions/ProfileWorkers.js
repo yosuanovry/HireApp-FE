@@ -169,7 +169,7 @@ export const addExperience = (data, navigate) => async (dispatch) => {
     console.log(error);
   }
 };
-export const editExperience = (data, navigate,id) => async (dispatch) => {
+export const editExperience = (id,data, navigate) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
     let headers = {
