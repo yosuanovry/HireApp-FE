@@ -103,7 +103,7 @@ export const putProfileWorkers = (data, navigate) => async (dispatch) => {
     );
     const payload = result.data;
     dispatch({ type: "UPDATE_PROFILE_SUCCESS", payload });
-    navigate("/edit/detail-profile-workers");
+    // navigate("/edit/detail-profile-workers");
   } catch (err) {
     dispatch({
       type: `UPDATE_PROFILE_FAILED`,
