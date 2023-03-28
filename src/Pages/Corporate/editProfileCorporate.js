@@ -8,8 +8,10 @@ import IconProfile from "../../Assets/NavCorporate/louisth.png";
 import IconEdit from "../../Assets/Profile/edit.png";
 import IconMap from "../../Assets/Profile/mappin.png";
 import { useNavigate } from "react-router-dom";
-import { getProfileCorporate } from "../../Storages/Actions/ProfileCorporate";
-import { putProfileCorporate } from "../../Storages/Actions/ProfileCorporate";
+import {
+  getProfileCorporate,
+  putProfileCorporate,
+} from "../../Storages/Actions/ProfileCorporate";
 
 export default function EditProfileCorporate() {
   const corporate = useSelector((state) => state.get_profileCorp);

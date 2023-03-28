@@ -1,19 +1,147 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {
+  addSkill,
+  addExperience,
+  putProfileWorkers,
+  getProfileWorkers,
+  getSkillWorkers,
+  getExperienceWorkers,
+  deleteExperience,
+  editExperience,
+} from "../../Storages/Actions/ProfileWorkers";
 import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
 import Footer from "../../Component/Footer/footerCorporate";
 import IconProfile from "../../Assets/NavCorporate/louisth.png";
 import IconMap from "../../Assets/Profile/mappin.png";
 import IconEdit from "../../Assets/Profile/edit.png";
-import IconExp from "../../Assets/Profile/tokpet.png"
-// import { Button } from "bootstrap";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import ImgDef from"../../Assets/Profile/pengalamanKerja.png"
+
 export default function EditDetailProfile() {
+  const get_ProfileWorkers = useSelector((state) => state.get_profileWorkers);
+  const get_SkillWorkers = useSelector((state) => state.get_skillWorkers);
+  const get_ExperienceWorkers = useSelector(
+    (state) => state.get_experienceWorkers
+  );
+  const delete_ExperienceWorkers = useSelector(
+    (state) => state.delete_experience
+  );
+  const update_ExperienceWorkers = useSelector((state) => state.put_experience);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const handleCloseEdit = () => setShowEdit(false);
+  const handleShowEdit = () => setShowEdit(true);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [selected, setSelected] = useState();
+
+  ///////Get Data form///////
+  //get profile
+  useEffect(() => {
+    dispatch(getProfileWorkers(navigate));
+  }, [dispatch, navigate]);
+  //get skill workers
+  useEffect(() => {
+    dispatch(getSkillWorkers(navigate));
+  }, [dispatch, navigate]);
+  //get skill workers
+  useEffect(() => {
+    dispatch(getSkillWorkers(navigate));
+  }, [dispatch, navigate]);
+  //get experience workers
+  useEffect(() => {
+    dispatch(getExperienceWorkers(navigate));
+  }, [dispatch, navigate]);
+  //delete experience
+  const confirmDelete = (id) => {
+    setSelected(id);
+    handleShow();
+  };
+  const deleteData = (id) => {
+    dispatch(deleteExperience(id));
+  };
+  useEffect(() => {
+    dispatch(getProfileWorkers(navigate));
+    handleClose();
+  }, [delete_ExperienceWorkers]);
+
+  //update experience
+  const UpdateExperienceWorkers = (id) => {
+    const data = {
+      provinsi,
+      kota,
+      tempatkerja,
+      deskripsi,
+      nama,
+      job,
+    };
+    console.log(data);
+    dispatch(editExperience(data, navigate,id));
+  };
+  const confirmEditExperience = (id) => {
+    setSelected(id);
+    handleShowEdit();
+  };
+  //update data diri
+  const [provinsi, setProvinsi] = useState("");
+  const [kota, setKota] = useState("");
+  const [tempatkerja, setTempatKerja] = useState("");
+  const [nama, setNama] = useState("");
+  const [job, setJob] = useState("");
+  const updateProfileWorkers = (e) => {
+    e.preventDefault();
+    const data = {
+      provinsi,
+      kota,
+      tempatkerja,
+      deskripsi,
+      nama,
+      job,
+    };
+    console.log(data);
+    dispatch(putProfileWorkers(data, navigate));
+  };
+  //add skill pekerja
+  const [nama_skill, setNamaSkill] = useState("");
+  const addSkillWorkers = (e) => {
+    e.preventDefault();
+    const data = {
+      nama_skill,
+    };
+    console.log(data);
+    dispatch(addSkill(data, navigate));
+  };
+  //add experience
+  const [posisi, setPosisi] = useState("");
+  const [nama_perusahaan, setNamaPerusahaan] = useState("");
+  const [start_at, setStartAt] = useState("");
+  const [end_at, setEndAt] = useState("");
+  const [deskripsi, setDeskripsi] = useState("");
+  const addExperienceWorkers = (e) => {
+    e.preventDefault();
+    const data = {
+      posisi,
+      nama_perusahaan,
+      start_at,
+      end_at,
+      deskripsi,
+    };
+    console.log(data);
+    dispatch(addExperience(data, navigate));
+  };
+
   return (
     <div style={{ background: "#E5E5E5" }}>
       <NavbarCorporate />
       <div className="">
         <div
-          className="container-fluid z-index-1 position-absolute"
+          className="container-fluid border-0 z-index-1 position-absolute"
           style={{
             height: "35vh",
             backgroundColor: "#5E50A1",
@@ -24,335 +152,502 @@ export default function EditDetailProfile() {
           style={{ height: "80vh", marginTop: "7vh" }}
         >
           <div
-            className="container "
+            className="container"
             style={{ position: "relative", height: "" }}
           >
-            <div className="row">
-              <div className="col-4">
-                <div className="row border border-light-subtle rounded-4">
-                  <div
-                    className="border-0 rounded-4 "
-                    style={{ backgroundColor: "white" }}
-                  >
-                    <div className="d-flex align-items-center justify-content-center p-5 ">
-                      <div className="row">
-                        <div className=" mx-auto text-center">
-                          <img
-                            src={IconProfile}
-                            className="img img-fluid rounded-circle"
-                            alt={IconProfile}
-                            style={{ minWidth: "10vh", maxWidth: "12vh" }}
-                          />
-                        </div>
-                        <div className="mb-0 mt-3 text-center">
-                          <h6>
-                            <img className="img me-1" src={IconEdit}></img>Edit
-                          </h6>
-                        </div>
-                        <div className="mt-3">
-                          <h4 className="mt-1">Louis Tomlinson</h4>
-                          <h6 className="mt-2">Web Developer</h6>
-                          <h6 className="mt-2 mb-3">
-                            <img className="img me-1" src={IconMap}></img>
-                            Purwokerto, Jawa Tengah
-                          </h6>
-                          <h6 className="mt-2">Freelancer</h6>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    className="btn text-white mt-5 p-3"
-                    style={{ background: "#5E50A1" }}
-                  >
-                    Simpan
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-danger mt-4 p-3"
-                    style={{ borderColor: "#5E50A1", color: "#5E50A1" }}
-                  >
-                    Batal
-                  </button>
-                </div>
-              </div>
-              <div className="col-8">
-                {/* Data Diri */}
-                <div
-                  className="container border border-light-subtle rounded-4 "
-                  style={{
-                    backgroundColor: "white",
-                    minHeight: "15vh",
-                  }}
-                >
-                  <div className="row">
-                    <div className="p-5">
-                      <div className="border-bottom border-2 ">
-                        <h4 className="">Data diri</h4>
-                      </div>
-                      <form>
-                        <div className="mt-3 mb-3">
-                          <label className="form-label ms-2">
-                            Nama Lengkap
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control p-3"
-                            placeholder="Masukan nama lengkap"
-                          />
-                        </div>
-                        <div className="mb-3">
-                          <label className="form-label ms-2">Job desk</label>
-                          <input
-                            type="text"
-                            className="form-control p-3"
-                            placeholder="Masukan job desk"
-                          />
-                        </div>
-                        <div className="mb-3">
-                          <label className="form-label ms-2">Domisili</label>
-                          <input
-                            type="text"
-                            className="form-control p-3"
-                            placeholder="Masukan domisili"
-                          />
-                        </div>
-                        <div className="mb-3">
-                          <label className="form-label ms-2">
-                            Tempat kerja
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control p-3"
-                            placeholder="Masukan tempat kerja"
-                          />
-                        </div>
-                        <div className="mb-3">
-                          <label className="form-label ms-2">
-                            Deskripsi singkat
-                          </label>
-                          <textarea
-                            type="text"
-                            className="form-control p-3 mt-0"
-                            placeholder="Tuliskan deskripsi singkat"
-                            style={{ minHeight: "15vh" }}
-                          />
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Skill */}
-                <div
-                  className="container border border-light-subtle rounded-4 mt-4"
-                  style={{
-                    backgroundColor: "white",
-                    minHeight: "15vh",
-                  }}
-                >
-                  <div className="row">
-                    <div className="p-5">
-                      <div className="border-bottom border-2 ">
-                        <h4 className="">Skill</h4>
-                      </div>
-                      <form>
-                        <div className="row">
-                          <div className="col-10">
-                            <div className="mt-3 mb-3">
-                              <input
-                                type="text"
-                                className="form-control p-3"
-                                placeholder="Javascript, Html, css"
+            {/* Data Diri */}
+            {get_ProfileWorkers.data?.map((item, index) => (
+              <form key={index} onSubmit={updateProfileWorkers}>
+                <div className="row mt-3">
+                  <div className="col-4">
+                    <div className="row border border-light-subtle rounded-4">
+                      <div
+                        className="border-0 rounded-4 "
+                        style={{ backgroundColor: "white" }}
+                      >
+                        <div className="d-flex align-items-center justify-content-center p-5">
+                          <div className="row">
+                            <div className=" mx-auto text-center">
+                              <img
+                                src={item.photo || IconProfile}
+                                className="rounded-circle"
+                                alt={IconProfile}
+                                style={{ minWidth: "10vh", maxWidth: "12vh" }}
                               />
                             </div>
-                          </div>
-                          <div className="col-2">
-                            <div className="mt-3 mb-3">
-                              <button
-                                type="button"
-                                className="btn btn-warning text-white p-3"
-                              >
-                                Simpan
-                              </button>
+                            <div className="mb-0 mt-3 text-center">
+                              <h6>
+                                <img className="img me-1" src={IconEdit}></img>
+                                Edit
+                              </h6>
                             </div>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Pengalaman */}
-                <div
-                  className="container border border-light-subtle rounded-4 mt-4"
-                  style={{
-                    backgroundColor: "white",
-                    minHeight: "15vh",
-                  }}
-                >
-                  <div className="row">
-                    <div className="p-5">
-                      <div className="border-bottom border-2 ">
-                        <h4 className="">Pengalaman kerja</h4>
-                      </div>
-                      <div>
-                        <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                          <button
-                            className="btn btn-warning text-white me-md-2 p-3"
-                            type="button"
-                          >
-                            Edit
-                          </button>
-                          <button className="btn btn-danger p-3" type="button">
-                            X
-                          </button>
-                        </div>
-                        <div>
-                          <div className="row d-flex align-items-start">
-                            <div className="col-3 d-flex justify-content-center ">
-                              <img src={IconExp} className="" />
-                            </div>
-                            <div className="col-8 border-bottom border-2">
-                              <h4>Web Developer</h4>
-                              <h6>Tokopedia</h6>
-                              <p>July 2019 - January 2020 6 months</p>
-                              <h6 className="">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Vestibulum erat orci, mollis
-                                nec gravida sed, ornare quis urna. Curabitur eu
-                                lacus fringilla, vestibulum risus at.
+                            <div className="mt-3">
+                              <h4 className="mt-1">{item.nama || "nama"}</h4>
+                              <h6 className="mt-2">{item.job || "job"}</h6>
+                              <h6 className="mt-2 mb-3">
+                                <img className="img me-1" src={IconMap}></img>
+                                {item.kota || "kota"},
+                                {item.provinsi || "provinsi"}
+                              </h6>
+                              <h6 className="mt-2">
+                                {item.deskripsi || "deskripsi"}
                               </h6>
                             </div>
                           </div>
                         </div>
                       </div>
+                      <button
+                        type="submit"
+                        className="btn text-white mt-5 p-3"
+                        style={{ background: "#5E50A1" }}
+                      >
+                        Simpan
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-outline-danger mt-4 p-3"
+                        style={{ borderColor: "#5E50A1", color: "#5E50A1" }}
+                      >
+                        Batal
+                      </button>
+                    </div>
+                  </div>
+                  <div className="col-8">
+                    {/* Data Diri */}
+                    <div
+                      className="border border-light-subtle rounded-4 "
+                      style={{
+                        backgroundColor: "white",
+                        minHeight: "15vh",
+                      }}
+                    >
+                      <div className="row">
+                        <div className="p-5">
+                          <div className="border-bottom border-2 ">
+                            <h4 className="">Data diri</h4>
+                          </div>
+                          <div className="mt-3 mb-3">
+                            <label className="form-label ms-2">
+                              Nama Lengkap
+                            </label>
+                            <input
+                              type="text"
+                              name="nama"
+                              required
+                              onChange={(e) => setNama(e.target.value)}
+                              className="form-control p-3"
+                              placeholder={item.nama || "Masukan nama lengkap"}
+                            />
+                          </div>
+                          <div className="mb-3">
+                            <label className="form-label ms-2">Job desk</label>
+                            <input
+                              type="text"
+                              name="job"
+                              required
+                              onChange={(e) => setJob(e.target.value)}
+                              className="form-control p-3"
+                              placeholder={item.job || "Masukan job desk"}
+                            />
+                          </div>
+                          <div className="mb-3">
+                            <label className="form-label ms-2">Domisili</label>
+                            <input
+                              type="text"
+                              name="kota"
+                              required
+                              onChange={(e) => setKota(e.target.value)}
+                              className="form-control p-3"
+                              placeholder={item.kota || "Masukan domisili"}
+                            />
+                          </div>
+                          <div className="mb-3">
+                            <label className="form-label ms-2">Provinsi</label>
+                            <input
+                              type="text"
+                              name="provinsi"
+                              required
+                              onChange={(e) => setProvinsi(e.target.value)}
+                              className="form-control p-3"
+                              placeholder={item.provinsi || "Masukan provinsi"}
+                            />
+                          </div>
+                          <div className="mb-3">
+                            <label className="form-label ms-2">
+                              Tempat kerja
+                            </label>
+                            <input
+                              type="text"
+                              name="tempatkerja"
+                              required
+                              onChange={(e) => setTempatKerja(e.target.value)}
+                              className="form-control p-3"
+                              placeholder={
+                                item.tempat_kerja || "Masukan tempat kerja"
+                              }
+                            />
+                          </div>
+                          <div className="mb-3">
+                            <label className="form-label ms-2">
+                              Deskripsi singkat
+                            </label>
+                            <textarea
+                              type="text"
+                              name="deskripsi"
+                              required
+                              onChange={(e) => setDeskripsi(e.target.value)}
+                              className="form-control p-3 mt-0"
+                              placeholder={
+                                item.deskripsi || "Tuliskan deskripsi singkat"
+                              }
+                              style={{ minHeight: "15vh" }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            ))}
+            {/* Skill */}
+            {get_SkillWorkers.data?.map((item, index) => (
+              <form key={index} onSubmit={addSkillWorkers}>
+                <div className="row mt-3">
+                  <div className="col-4"></div>
+                  <div className="col-8">
+                    {/* Skill */}
+                    <div
+                      className="container border border-light-subtle rounded-4 mt-4"
+                      style={{
+                        backgroundColor: "white",
+                        minHeight: "15vh",
+                      }}
+                    >
+                      <div className="row">
+                        <div className="p-5">
+                          <div className="border-bottom border-2 ">
+                            <h4 className="">Skill</h4>
+                          </div>
+                          <div className="row">
+                            <div className="col-10">
+                              <div className="mt-3 mb-3">
+                                <input
+                                  type="text"
+                                  name="nama_skill"
+                                  required
+                                  onChange={(e) => setNamaSkill(e.target.value)}
+                                  className="form-control p-3"
+                                  placeholder={
+                                    item.nama_skill || "Javascript, Html, css"
+                                  }
+                                />
+                              </div>
+                            </div>
+                            <div className="col-2">
+                              <div className="mt-3 mb-3">
+                                <button
+                                  type="submit"
+                                  className="btn btn-warning text-white p-3"
+                                >
+                                  Simpan
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            ))}
+            {/* Pengalaman */}
+            <div>
+              <form onSubmit={addExperienceWorkers}>
+                <div className="row mt-3">
+                  <div className="col-4"></div>
+                  <div className="col-8">
+                    {/* Pengalaman */}
+                    <div
+                      className="container border border-light-subtle rounded-4 mt-4"
+                      style={{
+                        backgroundColor: "white",
+                        minHeight: "15vh",
+                      }}
+                    >
+                      <div className="row">
+                        <div className="p-5">
+                          <div className="border-bottom border-2 ">
+                            <h4 className="">Pengalaman kerja</h4>
+                          </div>
+                          {/* get pengalaman kerja */}
+                          {get_ExperienceWorkers.data?.map((item, index) => (
+                            <div key={index}>
+                              <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                <button
+                                  onClick={() => confirmEditExperience(item.id)}
+                                  className="btn btn-warning text-white me-md-2 p-3"
+                                  type="button"
+                                >
+                                  Edit
+                                </button>
+                                <button
+                                  onClick={() => confirmDelete(item.id)}
+                                  className="btn btn-danger p-3"
+                                  type="button"
+                                >
+                                  X
+                                </button>
+                              </div>
+                              <div>
+                                <div className="row d-flex align-items-start">
+                                  <div className="col-3 d-flex justify-content-center ">
+                                    <img
+                                      src={ImgDef}
+                                      className=""
+                                      style={{ maxWidth: "200px" }}
+                                    />
+                                  </div>
+                                  <div className="col-8 border-bottom border-3">
+                                    <h4>{item.posisi}</h4>
+                                    <h6>{item.nama_perusahaan}</h6>
+                                    <p>
+                                      {item.start_at} - {item.end_at}
+                                    </p>
+                                    <h6 className="">{item.deskripsi}</h6>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
 
-                      <form>
-                        <div className="mt-3 mb-3">
+                          <div className="mt-3 mb-3">
+                            <label className="form-label ms-2">Posisi</label>
+                            <input
+                              type="text"
+                              name="posisi"
+                              required
+                              onChange={(e) => setPosisi(e.target.value)}
+                              className="form-control p-3"
+                              placeholder="web developer"
+                            />
+                          </div>
+
+                          <div className="row">
+                            <div className="col-6">
+                              <div className="mt-3 mb-3">
+                                <label className="form-label ms-2">
+                                  Nama perusahaan
+                                </label>
+                                <input
+                                  type="text"
+                                  name="nama_perusahaan"
+                                  onChange={(e) =>
+                                    setNamaPerusahaan(e.target.value)
+                                  }
+                                  className="form-control p-3"
+                                  placeholder="PT Harus bisa"
+                                />
+                              </div>
+                            </div>
+                            <div className="col-3">
+                              <div className="mt-3 mb-3">
+                                <label className="form-label ms-2">
+                                  Dari Bulan/tahun
+                                </label>
+
+                                <input
+                                  type="text"
+                                  name="start_at"
+                                  required
+                                  onChange={(e) => setStartAt(e.target.value)}
+                                  className="form-control p-3"
+                                  placeholder="Januari 2018"
+                                />
+                              </div>
+                            </div>
+                            <div className="col-3">
+                              <div className="mt-3 mb-3">
+                                <label className="form-label ms-2">
+                                  Sampai Bulan/tahun
+                                </label>
+                                <input
+                                  type="text"
+                                  name="end_at"
+                                  required
+                                  onChange={(e) => setEndAt(e.target.value)}
+                                  className="form-control p-3"
+                                  placeholder="Januari 2019"
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="mb-3">
+                            <label className="form-label ms-2">
+                              Deskripsi singkat
+                            </label>
+                            <textarea
+                              type="text"
+                              name="deskripsi"
+                              required
+                              onChange={(e) => setDeskripsi(e.target.value)}
+                              className="form-control p-3 mt-0"
+                              placeholder="Deskripsikan pekerjaan anda"
+                              style={{ minHeight: "15vh" }}
+                            />
+                          </div>
+
+                          <div className="mb-3 mt-5 border-top border-2 ">
+                            <button
+                              type="submit"
+                              className="btn btn-outline-warning w-100 p-3 mt-5"
+                            >
+                              Tambah Pengalaman Kerja
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <form></form>
+              <Modal show={showEdit} onHide={() => handleCloseEdit()}>
+                {update_ExperienceWorkers.isLoading ? (
+                  <p>loading...</p>
+                ) : (
+                  <>
+                    <form onSubmit={UpdateExperienceWorkers}>
+                      <Modal.Header closeButton className="bg-white">
+                        <Modal.Title>Update Pengalaman Kerja</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        <div>
                           <label className="form-label ms-2">Posisi</label>
                           <input
                             type="text"
-                            className="form-control p-3"
+                            name="posisi"
+                            required
+                            onChange={(e) => setPosisi(e.target.value)}
+                            className="form-control p-2"
                             placeholder="web developer"
                           />
                         </div>
-
-                        <div className="row">
-                          <div className="col-6">
-                            <div className="mt-3 mb-3">
-                              <label className="form-label ms-2">
-                                Nama perusahaan
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control p-3"
-                                placeholder="PT Harus bisa"
-                              />
-                            </div>
-                          </div>
-                          <div className="col-3">
-                            <div className="mt-3 mb-3">
-                              <label className="form-label ms-2">
-                                Dari Bulan/tahun
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control p-3"
-                                placeholder="Januari 2018"
-                              />
-                            </div>
-                          </div>
-                          <div className="col-3">
-                            <div className="mt-3 mb-3">
-                              <label className="form-label ms-2">
-                                Sampai Bulan/tahun
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control p-3"
-                                placeholder="Januari 2019"
-                              />
-                            </div>
-                          </div>
+                        <div>
+                          <label className="form-label ms-2">
+                            Nama perusahaan
+                          </label>
+                          <input
+                            type="text"
+                            name="nama_perusahaan"
+                            onChange={(e) => setNamaPerusahaan(e.target.value)}
+                            className="form-control p-2"
+                            placeholder="PT Harus bisa"
+                          />
                         </div>
-
-                        <div className="mb-3">
+                        <div>
+                          <label className="form-label ms-2">
+                            Dari Bulan/tahun
+                          </label>
+                          <input
+                            type="text"
+                            name="start_at"
+                            required
+                            onChange={(e) => setStartAt(e.target.value)}
+                            className="form-control p-2"
+                            placeholder="Januari 2018"
+                          />
+                        </div>
+                        <div>
+                          <label className="form-label ms-2">
+                            Sampai Bulan/tahun
+                          </label>
+                          <input
+                            type="text"
+                            name="end_at"
+                            required
+                            onChange={(e) => setEndAt(e.target.value)}
+                            className="form-control p-2"
+                            placeholder="Januari 2019"
+                          />
+                        </div>
+                        <div>
                           <label className="form-label ms-2">
                             Deskripsi singkat
                           </label>
                           <textarea
                             type="text"
+                            name="deskripsi"
+                            required
+                            onChange={(e) => setDeskripsi(e.target.value)}
                             className="form-control p-3 mt-0"
                             placeholder="Deskripsikan pekerjaan anda"
                             style={{ minHeight: "15vh" }}
                           />
                         </div>
-
-                        <div className="mb-3 mt-5 border-top border-2 ">
-                          <button
-                            type="button"
-                            className="btn btn-outline-warning w-100 p-3 mt-5"
-                          >
-                            Tambah Pengalaman Kerja
-                          </button>
+                      </Modal.Body>
+                      <Modal.Footer className="bg-white">
+                        <Button
+                          variant="secondary"
+                          onClick={() => handleCloseEdit()}
+                        >
+                          Close
+                        </Button>
+                        <Button
+                          type="submit"
+                          variant="success"
+                          onClick={() => UpdateExperienceWorkers(selected)}
+                        >
+                          Update
+                        </Button>
+                      </Modal.Footer>
+                    </form>
+                  </>
+                )}
+              </Modal>
+              <Modal show={show} onHide={() => handleClose()}>
+                {delete_ExperienceWorkers.isLoading ? (
+                  <p>loading...</p>
+                ) : (
+                  <>
+                    <Modal.Header closeButton className="bg-white">
+                      <Modal.Title>Kamu yakin hapus data ini</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Footer className="bg-white">
+                      <Button variant="secondary" onClick={() => handleClose()}>
+                        Close
+                      </Button>
+                      <Button
+                        variant="danger"
+                        onClick={() => deleteData(selected)}
+                      >
+                        Delete data
+                      </Button>
+                    </Modal.Footer>
+                  </>
+                )}
+              </Modal>
+            </div>
+            {/* Portofolio */}
+            <form>
+              <div className="row mt-3">
+                <div className="col-4"></div>
+                <div className="col-8">
+                  {/* Portofolio */}
+                  <div
+                    className="container border border-light-subtle rounded-4 mt-4"
+                    style={{
+                      backgroundColor: "white",
+                      minHeight: "15vh",
+                    }}
+                  >
+                    <div className="row">
+                      <div className="p-5">
+                        <div className="border-bottom border-2 ">
+                          <h4 className="">Portofolio</h4>
                         </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  className="container border border-light-subtle rounded-4 mt-4"
-                  style={{
-                    backgroundColor: "white",
-                    minHeight: "15vh",
-                  }}
-                >
-                  <div className="row">
-                    <div className="p-5">
-                      <div className="border-bottom border-2 ">
-                        <h4 className="">Pengalaman kerja</h4>
-                      </div>
-                      <div>
-                        <div className="d-grid gap-4 d-md-flex justify-content-md-end mt-4">
-                          <div className="col-2 d-flex justify-content-center ">
-                            <img src={IconExp} className="" />
-                          </div>
-                          <div className=" col-6">
-                            <h6>Tokopedia</h6>
-                            <h6>Tokopedia</h6>
-                          </div>
-                          <button
-                            className="btn btn-warning text-white me-md-2 p-3"
-                            type="button"
-                          >
-                            Edit
-                          </button>
-                          <button className="btn btn-danger p-3" type="button">
-                            X
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Portofolio */}
-                <div
-                  className="container border border-light-subtle rounded-4 mt-4"
-                  style={{
-                    backgroundColor: "white",
-                    minHeight: "15vh",
-                  }}
-                >
-                  <div className="row">
-                    <div className="p-5">
-                      <div className="border-bottom border-2 ">
-                        <h4 className="">Portofolio</h4>
-                      </div>
-                      <form>
                         <div className="mt-3 mb-3">
                           <label className="form-label ms-2">
                             Nama aplikasi
@@ -383,34 +678,36 @@ export default function EditDetailProfile() {
                               <input
                                 className="form-check-input"
                                 type="radio"
+                                value="Aplikasi Mobile"
                                 name="flexRadioDefault"
                                 id="flexRadioDefault1"
                               />
                               <label className="form-check-label">
-                                Default radio
+                                Aplikasi mobile
                               </label>
                             </div>
                             <div className="col-4 form-check">
                               <input
                                 className="form-check-input"
                                 type="radio"
+                                value="Aplikasi web"
                                 name="flexRadioDefault"
                                 id="flexRadioDefault2"
                               />
                               <label className="form-check-label">
-                                Default checked radio
+                                Aplikasi web
                               </label>
                             </div>
                           </div>
                         </div>
 
-                        <div className="container mt-3">
+                        <div className="container">
                           <label className="form-label ms-2">
-                            Type portofolio
+                            Upload gambar
                           </label>
-                          <div className="card border-0 position-relative">
+                          <div className="border border-2 position-relative">
                             <div
-                              className="card rounded w-100 bg-light"
+                              className="rounded w-100"
                               style={{ height: "350px" }}
                             ></div>
                             <div
@@ -436,19 +733,19 @@ export default function EditDetailProfile() {
                             Tambah Portofolio
                           </button>
                         </div>
-                      </form>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
       <div
         className="container-fluid z-index-2 position-absolute top-50 start-50 translate-middle"
         style={{
-          marginTop: "4200px",
+          marginTop: "4000px",
         }}
       >
         <Footer />

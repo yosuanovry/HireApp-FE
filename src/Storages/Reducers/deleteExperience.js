@@ -4,19 +4,19 @@ const initialState = {
   isLoading: false,
 };
 
-const get_profileWorkers = (state = initialState, action) => {
-  if (action.type === "GET_PROFILE_WORKERS_PENDING") {
+const delete_experience = (state = initialState, action) => {
+  if (action.type === "DELETE_EXPERIENCE_PENDING") {
     return {
       ...state,
       isLoading: true,
     };
-  } else if (action.type === "GET_PROFILE_WORKERS_SUCCESS") {
+  } else if (action.type === "DELETE_EXPERIENCE_SUCCESS") {
     return {
       ...state,
       data: action.payload,
       isLoading: false,
     };
-  } else if (action.type === "GET_PROFILE_WORKERS_FAILED") {
+  } else if (action.type === "DELETE_EXPERIENCE_FAILED") {
     return {
       ...state,
       errorMessage: action.payload,
@@ -27,4 +27,4 @@ const get_profileWorkers = (state = initialState, action) => {
   }
 };
 
-export default get_profileWorkers;
+export default delete_experience;
