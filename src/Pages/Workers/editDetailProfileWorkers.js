@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   addSkill,
   addExperience,
@@ -11,6 +11,10 @@ import {
   getExperienceWorkers,
   deleteExperience,
   editExperience,
+  addPortofolio,
+  getPortofolioWorkers,
+  deletePortofolio,
+  editPortofolio,
 } from "../../Storages/Actions/ProfileWorkers";
 import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
 import Footer from "../../Component/Footer/footerCorporate";
@@ -27,18 +31,31 @@ export default function EditDetailProfile() {
   const get_ExperienceWorkers = useSelector(
     (state) => state.get_experienceWorkers
   );
+  const get_PortofolioWorkers = useSelector(
+    (state) => state.get_portofolioWorkers
+  );
   const delete_ExperienceWorkers = useSelector(
     (state) => state.delete_experience
   );
+  const delete_PortofolioceWorkers = useSelector(
+    (state) => state.delete_portofolio
+  );
   const update_ExperienceWorkers = useSelector((state) => state.put_experience);
+  const update_PortofolioWorkers = useSelector((state) => state.put_portofolio);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-  const handleCloseEdit = () => setShowEdit(false);
-  const handleShowEdit = () => setShowEdit(true);
+  const [showEditPorto, setShowEditPorto] = useState(false);
+  const [showDeletPorto, setShowDeletePorto] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleCloseEdit = () => setShowEdit(false);
+  const handleShowEditPorto = () => setShowEditPorto(true);
+  const handleCloseEditPorto = () => setShowEditPorto(false);
+  const handleShowEdit = () => setShowEdit(true);
+  const handleCloseDeletePorto = () => setShowDeletePorto(false);
+  const handleShowDeletePorto = () => setShowDeletePorto(true);
   const [selected, setSelected] = useState();
 
   ///////Get Data form///////
@@ -54,6 +71,11 @@ export default function EditDetailProfile() {
   useEffect(() => {
     dispatch(getExperienceWorkers(navigate));
   }, [dispatch, navigate]);
+  useEffect(() => {
+    dispatch(getPortofolioWorkers(navigate));
+  }, [dispatch, navigate]);
+
+  ///////Delete Data form///////
   //delete experience
   const confirmDelete = (id) => {
     setSelected(id);
@@ -66,7 +88,19 @@ export default function EditDetailProfile() {
     dispatch(getProfileWorkers(navigate));
     handleClose();
   }, [delete_ExperienceWorkers, dispatch, navigate]);
-
+  //delete portofolio
+  const confirmDeletePorto = (id) => {
+    setSelected(id);
+    handleShowDeletePorto();
+  };
+  const deleteDataPortofolio = (id) => {
+    dispatch(deletePortofolio(id));
+  };
+  useEffect(() => {
+    dispatch(getProfileWorkers(navigate));
+    handleCloseDeletePorto();
+  }, [delete_PortofolioceWorkers, dispatch, navigate]);
+  ///////Update Data form///////
   //update experience
   const UpdateExperienceWorkers = (id) => {
     const data = {
@@ -82,6 +116,23 @@ export default function EditDetailProfile() {
   const confirmEditExperience = (id) => {
     setSelected(id);
     handleShowEdit();
+  };
+  //update Portofolio
+  const [tipe, setTipePorto] = useState("");
+  const [link_repo, setLinkRepo] = useState("");
+  const UpdatePortofolioWorkers = (id) => {
+    const data = {
+      link_repo,
+      nama_perusahaan,
+      tipe,
+      photo,
+    };
+    console.log(data);
+    dispatch(editPortofolio(id, data, navigate));
+  };
+  const confirmEditPortofolio = (id) => {
+    setSelected(id);
+    handleShowEditPorto();
   };
   //update data diri
   const [provinsi, setProvinsi] = useState("");
@@ -102,6 +153,7 @@ export default function EditDetailProfile() {
     console.log(data);
     dispatch(putProfileWorkers(data, navigate));
   };
+  ///////add Data form///////
   //add skill pekerja
   const [nama_skill, setNamaSkill] = useState("");
   const addSkillWorkers = (e) => {
@@ -131,7 +183,32 @@ export default function EditDetailProfile() {
     dispatch(addExperience(data, navigate));
   };
   //add Portofolio
-
+  const [inputDataPortofolio, setDataPortofolio] = useState({
+    nama_perusahaan: "",
+    link_repo: "",
+    tipe: "",
+  });
+  const [photo, setPhoto] = useState();
+  const handleChangeAddPorto = (e) => {
+    setDataPortofolio({
+      ...inputDataPortofolio,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handlePhoto = (e) => {
+    setPhoto(e.target.files[0]);
+    console.log(e.target.files[0]);
+  };
+  const postFormPortofolio = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("nama_perusahaan", inputDataPortofolio.nama_perusahaan);
+    formData.append("link_repo", inputDataPortofolio.link_repo);
+    formData.append("tipe", inputDataPortofolio.tipe);
+    formData.append("photo", photo);
+    console.log(formData);
+    dispatch(addPortofolio(formData, navigate));
+  };
   return (
     <div style={{ background: "#E5E5E5" }}>
       <NavbarCorporate />
@@ -625,14 +702,14 @@ export default function EditDetailProfile() {
                   </>
                 )}
               </Modal>
-            
             </div>
             {/* Portofolio */}
-            <form>
+            <form onSubmit={postFormPortofolio}>
               <div className="row mt-3">
                 <div className="col-4"></div>
                 <div className="col-8">
                   {/* Portofolio */}
+
                   <div
                     className="container border border-light-subtle rounded-4 mt-4"
                     style={{
@@ -645,12 +722,52 @@ export default function EditDetailProfile() {
                         <div className="border-bottom border-2 ">
                           <h4 className="">Portofolio</h4>
                         </div>
+                        {get_PortofolioWorkers.data?.map((item, index) => (
+                          <div key={index}>
+                            <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                              <button
+                                onClick={() => confirmEditPortofolio(item.id)}
+                                className="btn btn-warning text-white me-md-2 p-3"
+                                type="button"
+                              >
+                                Edit
+                              </button>
+                              <button
+                                onClick={() => confirmDeletePorto(item.id)}
+                                className="btn btn-danger p-3"
+                                type="button"
+                              >
+                                X
+                              </button>
+                            </div>
+                            <div>
+                              <div className="row d-flex align-items-start">
+                                <div className="col-3 d-flex justify-content-center ">
+                                  <img
+                                    src={item.photo}
+                                    className=""
+                                    style={{ maxWidth: "150px" }}
+                                  />
+                                </div>
+                                <div className="col-8 border-bottom border-3">
+                                  <h4>{item.nama_perusahaan}</h4>
+                                  <Link to={item.link_repo}>Link Repo</Link>
+                                  <h6>{item.tipe}</h6>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
                         <div className="mt-3 mb-3">
                           <label className="form-label ms-2">
                             Nama aplikasi
                           </label>
                           <input
                             type="text"
+                            value={inputDataPortofolio.nama_perusahaan}
+                            name="nama_perusahaan"
+                            required
+                            onChange={handleChangeAddPorto}
                             className="form-control p-3"
                             placeholder="Masukkan nama aplikasi"
                           />
@@ -661,6 +778,10 @@ export default function EditDetailProfile() {
                           </label>
                           <input
                             type="text"
+                            value={inputDataPortofolio.link_repo}
+                            name="link_repo"
+                            required
+                            onChange={handleChangeAddPorto}
                             className="form-control p-3"
                             placeholder="Masukkan link repository"
                           />
@@ -675,9 +796,11 @@ export default function EditDetailProfile() {
                               <input
                                 className="form-check-input"
                                 type="radio"
-                                value="Aplikasi Mobile"
-                                name="flexRadioDefault"
-                                id="flexRadioDefault1"
+                                value="Aplikasi mobile"
+                                name="tipe"
+                                required
+                                onChange={handleChangeAddPorto}
+                                id="tipe1"
                               />
                               <label className="form-check-label">
                                 Aplikasi mobile
@@ -686,10 +809,12 @@ export default function EditDetailProfile() {
                             <div className="col-4 form-check">
                               <input
                                 className="form-check-input"
-                                type="radio"
                                 value="Aplikasi web"
-                                name="flexRadioDefault"
-                                id="flexRadioDefault2"
+                                name="tipe"
+                                required
+                                onChange={handleChangeAddPorto}
+                                id="tipe2"
+                                type="radio"
                               />
                               <label className="form-check-label">
                                 Aplikasi web
@@ -716,6 +841,8 @@ export default function EditDetailProfile() {
                                   className="file"
                                   type="file"
                                   name="photo"
+                                  required
+                                  onChange={handlePhoto}
                                 />
                               </div>
                             </div>
@@ -724,7 +851,7 @@ export default function EditDetailProfile() {
 
                         <div className="mb-3 mt-5 border-top border-2 ">
                           <button
-                            type="button"
+                            type="submit"
                             className="btn btn-outline-warning w-100 p-3 mt-5"
                           >
                             Tambah Portofolio
@@ -736,6 +863,148 @@ export default function EditDetailProfile() {
                 </div>
               </div>
             </form>
+            <Modal show={showEditPorto} onHide={() => handleCloseEditPorto()}>
+              {update_PortofolioWorkers.isLoading ? (
+                <p>loading...</p>
+              ) : (
+                <>
+                  <form onSubmit={UpdatePortofolioWorkers}>
+                    <Modal.Header closeButton className="bg-white">
+                      <Modal.Title>Update Pengalaman Kerja</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <div className="mt-3 mb-3">
+                        <label className="form-label ms-2">Nama aplikasi</label>
+                        <input
+                          type="text"
+                          name="nama_perusahaan"
+                          required
+                          onChange={(e) => setNamaPerusahaan(e.target.value)}
+                          className="form-control p-3"
+                          placeholder="Masukkan nama aplikasi"
+                        />
+                      </div>
+                      <div className="mt-3 mb-3">
+                        <label className="form-label ms-2">
+                          Link repository
+                        </label>
+                        <input
+                          type="text"
+                          name="link_repo"
+                          required
+                          onChange={(e) => setLinkRepo(e.target.value)}
+                          className="form-control p-3"
+                          placeholder="Masukkan link repository"
+                        />
+                      </div>
+
+                      <div className="mt-3 mb-3 p-2">
+                        <label className="form-label ms-2">
+                          Type portofolio
+                        </label>
+                        <div className="row row-cols-2 p-3">
+                          <div className="col-3 form-check">
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              value="Aplikasi mobile"
+                              name="tipe"
+                              required
+                              onChange={(e) => setTipePorto(e.target.value)}
+                              id="tipe1"
+                            />
+                            <label className="form-check-label">
+                              Aplikasi mobile
+                            </label>
+                          </div>
+                          <div className="col-4 form-check">
+                            <input
+                              className="form-check-input"
+                              value="Aplikasi web"
+                              name="tipe"
+                              required
+                              onChange={(e) => setTipePorto(e.target.value)}
+                              id="tipe2"
+                              type="radio"
+                            />
+                            <label className="form-check-label">
+                              Aplikasi web
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="container">
+                        <label className="form-label ms-2">Upload gambar</label>
+                        <div className="border border-2 position-relative">
+                          <div
+                            className="rounded w-100"
+                            style={{ height: "350px" }}
+                          ></div>
+                          <div
+                            action="/file-upload"
+                            className="dropzone position-absolute top-50 start-50 translate-middle text-center ms-5 text-black"
+                          >
+                            <div className="fallback">
+                              <input
+                                className="file"
+                                type="file"
+                                name="photo"
+                                required
+                                onChange={handlePhoto}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </Modal.Body>
+                    <Modal.Footer className="bg-white">
+                      <Button
+                        variant="secondary"
+                        onClick={() => handleCloseEditPorto()}
+                      >
+                        Close
+                      </Button>
+                      <Button
+                        type="submit"
+                        variant="success"
+                        onClick={() => UpdatePortofolioWorkers(selected)}
+                      >
+                        Update
+                      </Button>
+                    </Modal.Footer>
+                  </form>
+                </>
+              )}
+            </Modal>
+            <Modal
+              show={showDeletPorto}
+              onHide={() => handleCloseDeletePorto()}
+            >
+              {delete_PortofolioceWorkers.isLoading ? (
+                <p>loading...</p>
+              ) : (
+                <>
+                  <Modal.Header closeButton className="bg-white">
+                    <Modal.Title>Kamu yakin hapus portofolio ini?</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Footer className="bg-white">
+                    <Button
+                      variant="secondary"
+                      onClick={() => handleCloseDeletePorto()}
+                    >
+                      Close
+                    </Button>
+                    <Button
+                      variant="danger"
+                      onClick={() => deleteDataPortofolio(selected)}
+                    >
+                      Delete data
+                    </Button>
+                  </Modal.Footer>
+                </>
+              )}
+            </Modal>
           </div>
         </div>
       </div>

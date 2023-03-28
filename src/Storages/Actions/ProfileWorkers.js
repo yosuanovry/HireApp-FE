@@ -253,3 +253,88 @@ export const addPortofolio = (data, navigate) => async (dispatch) => {
     console.log(err);
   }
 };
+export const getPortofolioWorkers = (navigate) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) navigate("/auth/login-pekerja");
+    let headers = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    dispatch({ type: "GET_PORTOFOLIO_WORKERS_PENDING" });
+    const result = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}/portofolio/myPortofolio`,
+      headers
+    );
+    const get_ExperienceWorkers = result.data.data;
+    dispatch({
+      type: "GET_PORTOFOLIO_WORKERS_SUCCESS",
+      payload: get_ExperienceWorkers,
+    });
+  } catch (err) {
+    dispatch({
+      type: `GET_PORTOFOLIO_WORKERS_FAILED`,
+      payload: err.respons.data.message,
+    });
+    console.log("get porto error");
+    console.log(err);
+  }
+};
+export const deletePortofolio = (id) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem("token");
+    let headers = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    dispatch({ type: "DELETE_PORTOFOLIO_PENDING" });
+    const result = axios.delete(
+      `${process.env.REACT_APP_BASE_URL}/portofolio/delete/${id}`,
+      headers
+    );
+    const delete_PortofolioWorkers = result.data;
+    dispatch({
+      type: "DELETE_PORTOFOLIO_SUCCESS",
+      payload: delete_PortofolioWorkers,
+    });
+  } catch (error) {
+    dispatch({
+      type: "DELETE_PORTOFOLIO_FAILED",
+      payload: error.response.data.message,
+    });
+    console.log("DELETE PORTOFOLIO ERROR");
+    console.log(error);
+  }
+};
+export const editPortofolio = (id, data, navigate) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem("token");
+    let headers = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    dispatch({ type: "UPDATE_PORTOFOLIO_PENDING" });
+    const result = axios.put(
+      `${process.env.REACT_APP_BASE_URL}/portofolio/update/${id}`,
+      data,
+      headers
+    );
+    const update_PortofolioWorkers = result.data;
+    dispatch({
+      type: "UPDATE_PORTOFOLIO_SUCCESS",
+      payload: update_PortofolioWorkers,
+    });
+    // navigate("/edit/detail-profile-workers");
+  } catch (error) {
+    dispatch({
+      type: "UPDATE_EXPERIENCE_FAILED",
+      payload: error.response.data.message,
+    });
+    console.log("UPDATE PORTOFOLIO ERROR");
+    console.log(error);
+  }
+};

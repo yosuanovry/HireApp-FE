@@ -1,19 +1,18 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   addSkill,
   addExperience,
   putProfileWorkers,
-  addPortofolio
+  addPortofolio,
 } from "../../Storages/Actions/ProfileWorkers";
 import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
 import Footer from "../../Component/Footer/footerCorporate";
 import IconProfile from "../../Assets/NavCorporate/louisth.png";
 import IconMap from "../../Assets/Profile/mappin.png";
 import IconEdit from "../../Assets/Profile/edit.png";
-
 
 export default function EditProfileWorkers() {
   const dispatch = useDispatch();
@@ -56,7 +55,7 @@ export default function EditProfileWorkers() {
   const [nama_perusahaan, setNamaPerusahaan] = useState("");
   const [start_at, setStartAt] = useState("");
   const [end_at, setEndAt] = useState("");
-  const [deskripsi,   setDeskripsi] = useState("");
+  const [deskripsi, setDeskripsi] = useState("");
   const addExperienceWorkers = (e) => {
     e.preventDefault();
     const data = {
@@ -74,7 +73,7 @@ export default function EditProfileWorkers() {
     nama_perusahaan: "",
     link_repo: "",
     tipe: "",
-  })
+  });
   const [photo, setPhoto] = useState();
   const handleChangeAddPorto = (e) => {
     setDataPortofolio({
@@ -95,7 +94,6 @@ export default function EditProfileWorkers() {
     formData.append("photo", photo);
     console.log(formData);
     dispatch(addPortofolio(formData, navigate));
-
   };
   return (
     <div style={{ background: "#E5E5E5" }}>
@@ -477,10 +475,7 @@ export default function EditProfileWorkers() {
                                 <input
                                   className="form-check-input"
                                   type="radio"
-                                  value={
-                                    inputDataPortofolio.tipe ===
-                                    "Aplikasi mobile"
-                                  }
+                                  value="Aplikasi mobile"
                                   name="tipe"
                                   required
                                   onChange={handleChangeAddPorto}
@@ -493,15 +488,12 @@ export default function EditProfileWorkers() {
                               <div className="col-4 form-check">
                                 <input
                                   className="form-check-input"
-                                  value={
-                                    inputDataPortofolio.tipe === "Aplikasi web"
-                                  }
+                                  value="Aplikasi web"
                                   name="tipe"
                                   required
                                   onChange={handleChangeAddPorto}
                                   id="tipe2"
                                   type="radio"
-
                                 />
                                 <label className="form-check-label">
                                   Aplikasi web
