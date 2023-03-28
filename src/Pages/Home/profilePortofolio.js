@@ -18,7 +18,8 @@ import axios from 'axios'
 import {useParams} from 'react-router-dom'
 
 export default function EditProfileCorporate() {
-  const [data,setData] = useState()
+  const [user,setUser] = useState()
+  const [portofolio, setPortofolio] = useState()
   const {id} = useParams()
   
 
@@ -33,7 +34,7 @@ export default function EditProfileCorporate() {
       .get(url)
       .then((res) => {
         console.log(res)
-        setData(res.data.data);
+        setUser(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -45,20 +46,21 @@ export default function EditProfileCorporate() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
   
-  const getExperienceById = () => {
-    var url = `${process.env.REACT_APP_BASE_URL}/pekerja/detail/${id}`
+  const getPortofolioById = () => {
+    var url = `${process.env.REACT_APP_BASE_URL}/portofolio/detail/${id}`
     axios
       .get(url)
       .then((res) => {
         console.log(res)
-        setData(res.data.data);
+        setPortofolio(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  console.log(data);
+  console.log(user);
+  console.log(portofolio)
 
   return (
     <div style={{ background: "#f5f4f4" }}>
@@ -78,7 +80,7 @@ export default function EditProfileCorporate() {
                 <div className="row">
                   <div className="border-0 rounded-4 " style={{ backgroundColor: "white" }}>
                     <div className="d-flex align-items-center justify-content-center p-5">
-                      {data?.map((item,index) => (
+                      {user?.map((item,index) => (
                         <div key={index} className="row">
                         <div className="text-center">
                           <img src={item.photo} className="rounded-circle" alt={IconProfile} style={{ width: "280px" }} />
@@ -188,13 +190,14 @@ export default function EditProfileCorporate() {
                     minHeight: "1500px",
                   }}
                 >
-                  <div className="row">
+                  {portofolio?.map((item,index) => (
+                    <div key={index} className="row">
                     <div className="p-5">
                     <h3 className="pb-2" style={{fontWeight:'700', borderBottom:'5px solid #5E50A1',
                         borderColor:'#5E50A1'}}>Portofolio</h3>
                      <div className="mt-5  d-flex justify-content-between">
                         <div>
-                        <img src={p1} alt="" style={{width:'180px'}}/>
+                        <img src={item.photo} alt="" style={{width:'180px'}}/>
                         <h5 className="d-flex justify-content-center mt-2">Remainder App</h5>
                         </div>
                         <div>
@@ -222,6 +225,8 @@ export default function EditProfileCorporate() {
                      </div>
                     </div>
                   </div>
+                  ))}
+                  
 
                   <div className="row">
                     <div className="p-5">

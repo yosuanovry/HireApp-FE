@@ -5,7 +5,6 @@ import get_profileCorp from "./getProfileCorporate";
 import update_profileCorp from "./putProfileCorporate";
 import get_profileWorkers from "./getProfileWorkers";
 import add_skill from "./addSkillWorkers";
-import get_UserPekerja from "./getUserPekerja"
 import put_profile from "./putProfileWorkers";
 import get_skillWorkers from "./getSkillWorkers";
 import put_profileWorkers from "./putProfileWorkers";
@@ -19,7 +18,6 @@ const rootReducers = combineReducers({
   get_profileCorp,
   update_profileCorp,
   add_skill,
-  getUser: get_UserPekerja,
   get_profileWorkers,
   put_profile,
   get_skillWorkers,

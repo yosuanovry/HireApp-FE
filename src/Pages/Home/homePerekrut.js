@@ -11,7 +11,8 @@ import { Link } from "react-router-dom";
 // import IconProfile from "../../Assets/NavCorporate/louisth.png";
 
 export default function HomePerekrut() {
-  const [data, setData] = useState();
+  const [datas, setDatas] = useState();
+  const [searchText, setSearchText] = useState();
   
   // const dispatch = useDispatch()
 
@@ -26,12 +27,30 @@ export default function HomePerekrut() {
       .get(url, { mode: 'no-cors' })
       .then((res) => {
         console.log(res);
-        setData(res.data.data);
+        setDatas(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  function searchUser() {
+    var url = `${process.env.REACT_APP_BASE_URL}/pekerja/search`;
+    axios
+      .get(url)
+      .then((res) => {
+        console.log(res);
+        if (!searchText) {
+          window.location.reload(false);
+        }
+        setDatas(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  
 
   // const get_user = useSelector((state)=>state.get_UserPerekrut)
 
@@ -40,7 +59,7 @@ export default function HomePerekrut() {
   // // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);
 
-  console.log(data);
+  console.log(datas);
 
   return (
     <>
@@ -59,10 +78,10 @@ export default function HomePerekrut() {
       <div className="container mt-5" >
         <div className="row">
           <div className="col-8">
-            <input className="inp-1 p-4" type="text" placeholder="Search for any skill" style={{ border: "none" }} />
+            <input onChange={(e) => setSearchText(e.target.value)} className="inp-1 p-4" type="text" placeholder="Search for any skill" style={{ border: "none" }} />
           </div>
           <div className="col-4 d-flex justify-content-center">
-            <button
+            <button onClick={searchUser}
               className="search-button btn btn-warning text-white p-4"
               style={{
                 backgroundColor: "#5E50A1",
@@ -90,7 +109,7 @@ export default function HomePerekrut() {
       <div className="mt-5 pt-5">
       </div>
 
-{data?.map((item, index) => (
+{datas?.map((item, index) => (
   <div key={index} className="container">
         <div className="row d-flex align-items-center border-bottom" style={{ backgroundColor: "white", height: "300px" }}>
           <div className="col-2 d-flex justify-content-center">
@@ -98,24 +117,22 @@ export default function HomePerekrut() {
           </div>
           <div className="col-4">
             <h3 style={{ fontWeight: "700" }}>{item.nama}</h3>
-            <h5 style={{ marginTop: "15px", color: "#9EA0A5", fontWeight: "400" }}>{item.jabatan}</h5>
+            <h5 style={{ marginTop: "15px", color: "#9EA0A5", fontWeight: "400" }}>{item.job}</h5>
             <div style={{ marginTop: "15px" }} className="d-flex align-items-center flex-rows">
               <img src={iconloc} alt="" style={{ height: "30px" }} />
               <h5 className="ms-3 mt-1" style={{ color: "#9EA0A5", fontWeight: "400" }}>
                 {item.email}
               </h5>
             </div>
-            <div style={{ marginTop: "15px" }} className="d-flex align-items-center flex-rows">
-              <button className="btn btn-warning text-white" style={{ backgroundColor: "#ffd547" }}>
-                PHP
-              </button>
-              <button className="btn btn-warning text-white ms-3" style={{ backgroundColor: "#ffd547" }}>
-                Javascript
-              </button>
-              <button className="btn btn-warning text-white ms-3" style={{ backgroundColor: "#ffd547" }}>
-                HTML
+            <div className="d-flex">
+            {item.nama_skill.split(",").map((item,index) => (
+              <div key={index} style={{ marginTop: "15px" }} className="d-flex align-items-center flex-rows">
+              <button className="btn btn-warning text-white ms-2" style={{ backgroundColor: "#ffd547" }}>
+                {item}
               </button>
             </div>
+            ))}
+          </div>
           </div>
           <div className="col-5 d-flex justify-content-end">
             <Link to={`/profile-portofolio/${item.id_user}`}>
