@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
 import Footer from "../../Component/Footer/footerCorporate";
 import IconProfile from "../../Assets/NavCorporate/louisth.png";
@@ -14,8 +14,52 @@ import p4 from "../../Assets/Profile/p4.png"
 import p5 from "../../Assets/Profile/p5.png"
 import p6 from "../../Assets/Profile/p6.png"
 import tokopedia from "../../Assets/Profile/tokopedia.png"
-// import { Button } from "bootstrap";
+import axios from 'axios'
+import {useParams} from 'react-router-dom'
+
 export default function EditProfileCorporate() {
+  const [data,setData] = useState()
+  const {id} = useParams()
+  
+
+  useEffect(() => {
+    getUserById();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
+  
+  const getUserById = () => {
+    var url = `${process.env.REACT_APP_BASE_URL}/pekerja/detail/${id}`
+    axios
+      .get(url)
+      .then((res) => {
+        console.log(res)
+        setData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getUserById();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
+  
+  const getExperienceById = () => {
+    var url = `${process.env.REACT_APP_BASE_URL}/pekerja/detail/${id}`
+    axios
+      .get(url)
+      .then((res) => {
+        console.log(res)
+        setData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  console.log(data);
+
   return (
     <div style={{ background: "#f5f4f4" }}>
       <NavbarCorporate />
@@ -34,14 +78,15 @@ export default function EditProfileCorporate() {
                 <div className="row">
                   <div className="border-0 rounded-4 " style={{ backgroundColor: "white" }}>
                     <div className="d-flex align-items-center justify-content-center p-5">
-                      <div className="row">
+                      {data?.map((item,index) => (
+                        <div key={index} className="row">
                         <div className="text-center">
-                          <img src={IconProfile} className="rounded-circle" alt={IconProfile} style={{ width: "280px" }} />
+                          <img src={item.photo} className="rounded-circle" alt={IconProfile} style={{ width: "280px" }} />
                         </div>
                         <div className=" mx-auto text-center"></div>
                         <div className="mt-4">
                           <h4 className="mt-3" style={{ fontWeight: "700", fontSize: "30px" }}>
-                            Louis Tomlinson
+                            {item.nama}
                           </h4>
                           <h5 className="mt-3" style={{ fontWeight: "600" }}>
                             Web Developer
@@ -49,14 +94,14 @@ export default function EditProfileCorporate() {
                           <div className="d-flex">
                             <img className="mt-2" src={iconloc} alt="" style={{ height: "30px" }} />
                             <h6 className="mt-3 ms-2" style={{ color: "#9EA0A5" }}>
-                              Purwokerto, Jawa Tengah
+                              {item.kota}
                             </h6>
                           </div>
                           <h5 className="mt-3" style={{ color: "#9EA0A5" }}>
                             Freelancer
                           </h5>
                           <h5 className="mt-4" style={{ color: "#9EA0A5", fontWeight: "400" }}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu lacus fringilla, vestibulum risus at.
+                            {item.deskripsi}
                           </h5>
                           <h4 style={{ fontWeight: "700", fontSize: "28px", marginTop: "120px" }}>Skill</h4>
                           <div className="mt-4">
@@ -95,7 +140,7 @@ export default function EditProfileCorporate() {
                               <div className="d-flex align-items-center mt-5 pt-5">
                                 <img src={mail} alt="" style={{ height: "25px" }} />
                                 <h5 className="mt-1 ms-4" style={{ color: "#9EA0A5" }}>
-                                  Louistommo@gmail.com
+                                  {item.email}
                                 </h5>
                               </div>
                               <div className="d-flex align-items-center mt-3">
@@ -128,6 +173,7 @@ export default function EditProfileCorporate() {
                           </div>
                         </div>
                       </div>
+                      ))} 
                     </div>
                   </div>
                 </div>

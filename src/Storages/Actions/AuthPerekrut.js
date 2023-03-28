@@ -22,6 +22,8 @@ export const loginUserPerekrut = (data, navigate) => async (dispatch) => {
     );
     const user = result.data.data;
     localStorage.setItem("token", user.token);
+    localStorage.setItem("email", user.email);
+    localStorage.setItem("nama", user.nama);
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: user });
     navigate("/edit/profile-corporate");
   } catch (err) {

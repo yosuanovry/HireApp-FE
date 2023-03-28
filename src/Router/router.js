@@ -54,7 +54,12 @@ function App() {
           path="/chat-workers"
           element={<ChateWorkers />}
         />
-        <Route path="/profile-portofolio" element={<ProfilePortofolio />} />
+
+        <Route 
+          path="/profile-portofolio/:id" 
+          element={<ProfilePortofolio />} 
+        />
+
         <Route path="/profile-hire" element={<HalamanHire />} />
       </Routes>
     </BrowserRouter>
