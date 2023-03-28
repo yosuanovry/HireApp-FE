@@ -19,7 +19,7 @@ import IconMap from "../../Assets/Profile/mappin.png";
 import IconEdit from "../../Assets/Profile/edit.png";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import ImgDef from"../../Assets/Profile/pengalamanKerja.png"
+import ImgDef from "../../Assets/Profile/pengalamanKerja.png";
 
 export default function EditDetailProfile() {
   const get_ProfileWorkers = useSelector((state) => state.get_profileWorkers);
@@ -130,6 +130,7 @@ export default function EditDetailProfile() {
     console.log(data);
     dispatch(addExperience(data, navigate));
   };
+  //add Portofolio
 
   return (
     <div style={{ background: "#E5E5E5" }}>
@@ -624,6 +625,7 @@ export default function EditDetailProfile() {
                   </>
                 )}
               </Modal>
+            
             </div>
             {/* Portofolio */}
             <form>
