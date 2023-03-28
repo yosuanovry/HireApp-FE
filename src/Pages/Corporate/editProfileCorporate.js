@@ -27,7 +27,9 @@ export default function EditProfileCorporate() {
   const [provinsi, setProvinsi] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const coursesPage = () => {
+    navigate("/home-perekrut");
+  };
   useEffect(() => {
     dispatch(getProfileCorporate(navigate));
   }, [dispatch, navigate]);
@@ -68,7 +70,7 @@ export default function EditProfileCorporate() {
             className="container"
             style={{ position: "relative", height: "" }}
           >
-            {(corporate||updateProfile).data?.map((item, index) => (
+            {(corporate || updateProfile).data?.map((item, index) => (
               <form key={index} onSubmit={UpdateProfileCorporate}>
                 <div className="row">
                   <div className="col-4">
@@ -110,6 +112,14 @@ export default function EditProfileCorporate() {
                         style={{ background: "#5E50A1" }}
                       >
                         Simpan
+                      </button>
+                      <button
+                        type="button"
+                        onClick={coursesPage}
+                        className="btn btn-outline-info mt-4 p-3"
+                        style={{ borderColor: "#5E50A1", color: "#5E50A1" }}
+                      >
+                        Home Perekrut
                       </button>
                       <button
                         type="button"
@@ -239,7 +249,7 @@ export default function EditProfileCorporate() {
                             />
                           </div>
                           <div className="mb-3">
-                            <label className="form-label ms-2">Linkedin</label>
+                            <label className="form-label ms-2">Provinsi</label>
                             <input
                               type="text"
                               name="provinsi"
@@ -247,7 +257,7 @@ export default function EditProfileCorporate() {
                               onChange={(e) => setProvinsi(e.target.value)}
                               className="form-control p-3"
                               placeholder={
-                                item.provinsi || "Masukan nama Linkedin "
+                                item.provinsi || "Masukan nama Provinsi "
                               }
                             />
                           </div>

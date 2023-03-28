@@ -16,6 +16,7 @@ export default function EditProfileCorporate() {
   const [portofolio, setPortofolio] = useState()
   const [experience, setExperience] = useState()
 
+
   const {id} = useParams()
   
 

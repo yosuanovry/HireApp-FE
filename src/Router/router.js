@@ -10,6 +10,7 @@ import AuthConfirmPassword from "../Pages/Auth/ResetPassword/confirmPassword";
 import AuthSendEmail from "../Pages/Auth/ResetPassword/sendEmail";
 import AuthSendOtp from "../Pages/Auth/ResetPassword/sendOtp";
 import EditProfileCorporate from "../Pages/Corporate/editProfileCorporate";
+import AddProfileCorporate from "../Pages/Corporate/homeProfileCorporate";
 import EditProfileWorkers from "../Pages/Workers/editProfileWorkers";
 import EditDetailProfileWorkers from "../Pages/Workers/editDetailProfileWorkers";
 import ChateWorkers from "../Pages/Workers/chatWorkers";
@@ -23,8 +24,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="home" replace="true" />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/home-perekrut" element={< HomePerekrut />} />
-        <Route path="/home-perekrut-sort" element={< HomePerekrutSort />} />
+        <Route path="/home-perekrut" element={<HomePerekrut />} />
+        <Route path="/home-perekrut-sort" element={<HomePerekrutSort />} />
         <Route path="/auth/login-pekerja" element={<AuthLoginPekerja />} />
         <Route path="/auth/login-perekrut" element={<AuthLoginPerekrut />} />
         <Route
@@ -45,20 +46,18 @@ function App() {
           path="/edit/profile-corporate"
           element={<EditProfileCorporate />}
         />
+        <Route
+          path="/edit/home-profile-corporate"
+          element={<AddProfileCorporate />}
+        />
         <Route path="/edit/profile-workers" element={<EditProfileWorkers />} />
         <Route
           path="/edit/detail-profile-workers"
           element={<EditDetailProfileWorkers />}
         />
-        <Route
-          path="/chat-workers"
-          element={<ChateWorkers />}
-        />
+        <Route path="/chat-workers" element={<ChateWorkers />} />
 
-        <Route 
-          path="/profile-portofolio/:id" 
-          element={<ProfilePortofolio />} 
-        />
+        <Route path="/profile-portofolio/:id" element={<ProfilePortofolio />} />
 
         <Route path="/profile-hire/:id" element={<HalamanHire />} />
       </Routes>
