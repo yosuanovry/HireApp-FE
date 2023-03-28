@@ -169,7 +169,7 @@ export const addExperience = (data, navigate) => async (dispatch) => {
     console.log(error);
   }
 };
-export const editExperience = (data, navigate,id) => async (dispatch) => {
+export const editExperience = (id,data, navigate) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
     let headers = {
@@ -222,5 +222,34 @@ export const deleteExperience = (id) => async (dispatch) => {
     });
     console.log("DELETE EXPERIENCE ERROR");
     console.log(error);
+  }
+};
+
+export const addPortofolio = (data, navigate) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) navigate("/auth/login-pekerja");
+    let headers = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    dispatch({ type: "ADD_PORTOFOLIO_PENDING" });
+    const result = await axios.post(
+      `${process.env.REACT_APP_BASE_URL}/portofolio`,
+      data,
+      headers
+    );
+    const payload = result.data;
+    dispatch({ type: "ADD_PORTOFOLIO_SUCCESS", payload });
+    navigate("/edit/profile-workers");
+  } catch (err) {
+    dispatch({
+      type: `ADD_PORTOFOLIO_ERROR`,
+      payload: err.message,
+    });
+    console.log("Add portofolio Error");
+    console.log(err);
   }
 };

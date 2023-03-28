@@ -50,10 +50,6 @@ export default function EditDetailProfile() {
   useEffect(() => {
     dispatch(getSkillWorkers(navigate));
   }, [dispatch, navigate]);
-  //get skill workers
-  useEffect(() => {
-    dispatch(getSkillWorkers(navigate));
-  }, [dispatch, navigate]);
   //get experience workers
   useEffect(() => {
     dispatch(getExperienceWorkers(navigate));
@@ -69,20 +65,19 @@ export default function EditDetailProfile() {
   useEffect(() => {
     dispatch(getProfileWorkers(navigate));
     handleClose();
-  }, [delete_ExperienceWorkers]);
+  }, [delete_ExperienceWorkers, dispatch, navigate]);
 
   //update experience
   const UpdateExperienceWorkers = (id) => {
     const data = {
-      provinsi,
-      kota,
-      tempatkerja,
+      posisi,
+      nama_perusahaan,
+      start_at,
+      end_at,
       deskripsi,
-      nama,
-      job,
     };
     console.log(data);
-    dispatch(editExperience(data, navigate, id));
+    dispatch(editExperience(id, data, navigate));
   };
   const confirmEditExperience = (id) => {
     setSelected(id);
@@ -135,6 +130,7 @@ export default function EditDetailProfile() {
     console.log(data);
     dispatch(addExperience(data, navigate));
   };
+  //add Portofolio
 
   return (
     <div style={{ background: "#E5E5E5" }}>
@@ -629,6 +625,7 @@ export default function EditDetailProfile() {
                   </>
                 )}
               </Modal>
+            
             </div>
             {/* Portofolio */}
             <form>

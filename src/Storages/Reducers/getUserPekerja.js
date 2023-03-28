@@ -4,7 +4,7 @@ const initialState = {
     isLoading:false
 }
 
-const get_UserPerekrut = (state=initialState,action)=>{
+const get_UserPekerja = (state=initialState,action)=>{
     if(action.type === 'GET_USER_PENDING'){
         return{
             ...state,
@@ -27,4 +27,4 @@ const get_UserPerekrut = (state=initialState,action)=>{
     }
 }
 
-export default get_UserPerekrut
+export default get_UserPekerja

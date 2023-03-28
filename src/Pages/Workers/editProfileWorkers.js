@@ -6,6 +6,7 @@ import {
   addSkill,
   addExperience,
   putProfileWorkers,
+  addPortofolio
 } from "../../Storages/Actions/ProfileWorkers";
 import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
 import Footer from "../../Component/Footer/footerCorporate";
@@ -15,13 +16,12 @@ import IconEdit from "../../Assets/Profile/edit.png";
 
 
 export default function EditProfileWorkers() {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
-    const coursesPage = () => {
-      navigate("/edit/detail-profile-workers");
-    };
+
+  const coursesPage = () => {
+    navigate("/edit/detail-profile-workers");
+  };
   //update data diri
   const [provinsi, setProvinsi] = useState("");
   const [kota, setKota] = useState("");
@@ -56,7 +56,7 @@ export default function EditProfileWorkers() {
   const [nama_perusahaan, setNamaPerusahaan] = useState("");
   const [start_at, setStartAt] = useState("");
   const [end_at, setEndAt] = useState("");
-  const [deskripsi, setDeskripsi] = useState("");
+  const [deskripsi,   setDeskripsi] = useState("");
   const addExperienceWorkers = (e) => {
     e.preventDefault();
     const data = {
@@ -69,7 +69,34 @@ export default function EditProfileWorkers() {
     console.log(data);
     dispatch(addExperience(data, navigate));
   };
+  //add portofolio link_repo,nama_perusahaan,tipe,photo
+  const [inputDataPortofolio, setDataPortofolio] = useState({
+    nama_perusahaan: "",
+    link_repo: "",
+    tipe: "",
+  })
+  const [photo, setPhoto] = useState();
+  const handleChangeAddPorto = (e) => {
+    setDataPortofolio({
+      ...inputDataPortofolio,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handlePhoto = (e) => {
+    setPhoto(e.target.files[0]);
+    console.log(e.target.files[0]);
+  };
+  const postFormPortofolio = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("nama_perusahaan", inputDataPortofolio.nama_perusahaan);
+    formData.append("link_repo", inputDataPortofolio.link_repo);
+    formData.append("tipe", inputDataPortofolio.tipe);
+    formData.append("photo", photo);
+    console.log(formData);
+    dispatch(addPortofolio(formData, navigate));
 
+  };
   return (
     <div style={{ background: "#E5E5E5" }}>
       <NavbarCorporate />
@@ -395,7 +422,7 @@ export default function EditProfileWorkers() {
                 </div>
               </form>
               {/* Portofolio */}
-              <form>
+              <form onSubmit={postFormPortofolio}>
                 <div className="row mt-3">
                   <div className="col-4"></div>
                   <div className="col-8">
@@ -418,6 +445,10 @@ export default function EditProfileWorkers() {
                             </label>
                             <input
                               type="text"
+                              value={inputDataPortofolio.nama_perusahaan}
+                              name="nama_perusahaan"
+                              required
+                              onChange={handleChangeAddPorto}
                               className="form-control p-3"
                               placeholder="Masukkan nama aplikasi"
                             />
@@ -428,6 +459,10 @@ export default function EditProfileWorkers() {
                             </label>
                             <input
                               type="text"
+                              value={inputDataPortofolio.link_repo}
+                              name="link_repo"
+                              required
+                              onChange={handleChangeAddPorto}
                               className="form-control p-3"
                               placeholder="Masukkan link repository"
                             />
@@ -442,8 +477,14 @@ export default function EditProfileWorkers() {
                                 <input
                                   className="form-check-input"
                                   type="radio"
-                                  name="flexRadioDefault"
-                                  id="flexRadioDefault1"
+                                  value={
+                                    inputDataPortofolio.tipe ===
+                                    "Aplikasi mobile"
+                                  }
+                                  name="tipe"
+                                  required
+                                  onChange={handleChangeAddPorto}
+                                  id="tipe1"
                                 />
                                 <label className="form-check-label">
                                   Aplikasi mobile
@@ -452,9 +493,15 @@ export default function EditProfileWorkers() {
                               <div className="col-4 form-check">
                                 <input
                                   className="form-check-input"
+                                  value={
+                                    inputDataPortofolio.tipe === "Aplikasi web"
+                                  }
+                                  name="tipe"
+                                  required
+                                  onChange={handleChangeAddPorto}
+                                  id="tipe2"
                                   type="radio"
-                                  name="flexRadioDefault"
-                                  id="flexRadioDefault2"
+
                                 />
                                 <label className="form-check-label">
                                   Aplikasi web
@@ -481,6 +528,8 @@ export default function EditProfileWorkers() {
                                     className="file"
                                     type="file"
                                     name="photo"
+                                    required
+                                    onChange={handlePhoto}
                                   />
                                 </div>
                               </div>
@@ -489,7 +538,7 @@ export default function EditProfileWorkers() {
 
                           <div className="mb-3 mt-5 border-top border-2 ">
                             <button
-                              type="button"
+                              type="submit"
                               className="btn btn-outline-warning w-100 p-3 mt-5"
                             >
                               Tambah Portofolio
