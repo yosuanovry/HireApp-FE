@@ -4,10 +4,11 @@ const initialState = {
     isLoading:false
 }
 
-const get_UserPekerja = (state=initialState,action)=>{
+const userPekerja = (state=initialState,action)=>{
     if(action.type === 'GET_USER_PENDING'){
         return{
             ...state,
+            errorMessage:null,
             isLoading:true
         }
     } else if(action.type === 'GET_USER_SUCCESS'){
@@ -27,4 +28,4 @@ const get_UserPekerja = (state=initialState,action)=>{
     }
 }
 
-export default get_UserPekerja
+export default userPekerja

@@ -95,6 +95,7 @@ export default function EditProfileWorkers() {
     console.log(formData);
     dispatch(addPortofolio(formData, navigate));
   };
+  
   return (
     <div style={{ background: "#E5E5E5" }}>
       <NavbarCorporate />
