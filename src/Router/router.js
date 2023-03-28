@@ -60,7 +60,7 @@ function App() {
           element={<ProfilePortofolio />} 
         />
 
-        <Route path="/profile-hire" element={<HalamanHire />} />
+        <Route path="/profile-hire/:id" element={<HalamanHire />} />
       </Routes>
     </BrowserRouter>
   );

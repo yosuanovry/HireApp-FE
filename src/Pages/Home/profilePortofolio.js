@@ -7,19 +7,15 @@ import mail from "../../Assets/Profile/mail.PNG";
 import ig from "../../Assets/Profile/ig.PNG";
 import github from "../../Assets/Profile/github.png";
 import fox from "../../Assets/Profile/fox.png";
-import p1 from "../../Assets/Profile/p1.png"
-import p2 from "../../Assets/Profile/p2.png"
-import p3 from "../../Assets/Profile/p3.png"
-import p4 from "../../Assets/Profile/p4.png"
-import p5 from "../../Assets/Profile/p5.png"
-import p6 from "../../Assets/Profile/p6.png"
 import tokopedia from "../../Assets/Profile/tokopedia.png"
 import axios from 'axios'
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 
 export default function EditProfileCorporate() {
   const [user,setUser] = useState()
   const [portofolio, setPortofolio] = useState()
+  const [experience, setExperience] = useState()
+
   const {id} = useParams()
   
 
@@ -27,31 +23,34 @@ export default function EditProfileCorporate() {
     getUserById();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
+
+  useEffect(() => {
+    getPortofolioById()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
+
+  useEffect(() => {
+    getExperienceById()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
   
   const getUserById = () => {
     var url = `${process.env.REACT_APP_BASE_URL}/pekerja/detail/${id}`
     axios
       .get(url)
       .then((res) => {
-        console.log(res)
         setUser(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
-  useEffect(() => {
-    getUserById();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]);
-  
+ 
   const getPortofolioById = () => {
-    var url = `${process.env.REACT_APP_BASE_URL}/portofolio/detail/${id}`
+    var url = `${process.env.REACT_APP_BASE_URL}/portofolio/show/${id}`
     axios
       .get(url)
       .then((res) => {
-        console.log(res)
         setPortofolio(res.data.data);
       })
       .catch((err) => {
@@ -59,8 +58,17 @@ export default function EditProfileCorporate() {
       });
   };
 
-  console.log(user);
-  console.log(portofolio)
+  const getExperienceById = () => {
+    var url = `${process.env.REACT_APP_BASE_URL}/experience/show/${id}`
+    axios
+      .get(url)
+      .then((res) => {
+        setExperience(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div style={{ background: "#f5f4f4" }}>
@@ -91,53 +99,31 @@ export default function EditProfileCorporate() {
                             {item.nama}
                           </h4>
                           <h5 className="mt-3" style={{ fontWeight: "600" }}>
-                            Web Developer
+                            {item.job}
                           </h5>
                           <div className="d-flex">
                             <img className="mt-2" src={iconloc} alt="" style={{ height: "30px" }} />
                             <h6 className="mt-3 ms-2" style={{ color: "#9EA0A5" }}>
-                              {item.kota}
+                              {item.kota}, {item.provinsi}
                             </h6>
                           </div>
                           <h5 className="mt-3" style={{ color: "#9EA0A5" }}>
-                            Freelancer
                           </h5>
                           <h5 className="mt-4" style={{ color: "#9EA0A5", fontWeight: "400" }}>
                             {item.deskripsi}
                           </h5>
                           <h4 style={{ fontWeight: "700", fontSize: "28px", marginTop: "120px" }}>Skill</h4>
-                          <div className="mt-4">
+
+                         <div className="row">
+                          {item.nama_skill.split(",").map((item,index) => (
+                            <div key={index} className="col mt-4 d-flex align-items-start">
                             <button className="btn btn-warning text-white" style={{ backgroundColor: "#FBB017" }}>
-                              Phyton
-                            </button>
-                            <button className="btn btn-warning text-white ms-3" style={{ backgroundColor: "#FBB017" }}>
-                              Laravel
-                            </button>
-                            <button className="btn btn-warning text-white ms-3" style={{ backgroundColor: "#FBB017" }}>
-                              Golang
-                            </button>
+                              {item}
+                            </button> 
                           </div>
-                          <div className="mt-4">
-                            <button className="btn btn-warning text-white" style={{ backgroundColor: "#FBB017" }}>
-                              Javascript
-                            </button>
-                            <button className="btn btn-warning text-white ms-3" style={{ backgroundColor: "#FBB017" }}>
-                              PHP
-                            </button>
-                            <button className="btn btn-warning text-white ms-3" style={{ backgroundColor: "#FBB017" }}>
-                              HTML
-                            </button>
+                          ))}
                           </div>
-                          <div className="mt-4">
-                            <button className="btn btn-warning text-white" style={{ backgroundColor: "#FBB017" }}>
-                              C++
-                            </button>
-                            <button className="btn btn-warning text-white ms-3" style={{ backgroundColor: "#FBB017" }}>
-                              Kotlin
-                            </button>
-                            <button className="btn btn-warning text-white ms-3" style={{ backgroundColor: "#FBB017" }}>
-                              Swift
-                            </button>
+                          
                             <div>
                               <div className="d-flex align-items-center mt-5 pt-5">
                                 <img src={mail} alt="" style={{ height: "25px" }} />
@@ -164,15 +150,16 @@ export default function EditProfileCorporate() {
                                 </h5>
                               </div>
                               <div className="d-flex justify-content-center mt-5 pt-4">
+                                <Link to={`/profile-hire/${item.id_user}`}>
                               <button type="button" className="btn text-white p-3" style={{ background: "#5E50A1",
                             width:'300px',
                             fontWeight:'700',
                             fontSize:'20px' }}>
                                 Hire
                               </button>
+                              </Link>
                               </div>
                             </div>
-                          </div>
                         </div>
                       </div>
                       ))} 
@@ -190,62 +177,46 @@ export default function EditProfileCorporate() {
                     minHeight: "1500px",
                   }}
                 >
-                  {portofolio?.map((item,index) => (
-                    <div key={index} className="row">
+                  
+                    <div className="row">
                     <div className="p-5">
                     <h3 className="pb-2" style={{fontWeight:'700', borderBottom:'5px solid #5E50A1',
                         borderColor:'#5E50A1'}}>Portofolio</h3>
-                     <div className="mt-5  d-flex justify-content-between">
+                    <div className="row">
+                      {portofolio?.map((item,index) => (
+                        <div key={index} className="col mt-5 d-flex justify-content-between">
                         <div>
                         <img src={item.photo} alt="" style={{width:'180px'}}/>
-                        <h5 className="d-flex justify-content-center mt-2">Remainder App</h5>
-                        </div>
-                        <div>
-                        <img src={p2} alt="" style={{width:'180px'}}/>
-                        <h5 className="d-flex justify-content-center mt-2">Social Media App</h5>
-                        </div>
-                        <div className="d-flex flex-column justify-content-center align-items-center">
-                        <img src={p3} alt="" style={{width:'180px'}}/>
-                        <h5 className="d-flex justify-content-center mt-2">Project Management Web</h5>
+                        <h5 className="d-flex justify-content-center mt-2">{item.nama_perusahaan}</h5>
                         </div>
                      </div>
-                     <div className="mt-5  d-flex justify-content-between">
-                        <div>
-                        <img src={p4} alt="" style={{width:'180px'}}/>
-                        <h5 className="d-flex justify-content-center mt-2">Remainder App</h5>
-                        </div>
-                        <div>
-                        <img src={p5} alt="" style={{width:'180px'}}/>
-                        <h5 className="d-flex justify-content-center mt-2">Social Media App</h5>
-                        </div>
-                        <div className="d-flex flex-column justify-content-center align-items-center">
-                        <img src={p6} alt="" style={{width:'180px'}}/>
-                        <h5 className="d-flex justify-content-center mt-2">Project Management Web</h5>
-                        </div>
-                     </div>
+                      ))}
+                      </div>
                     </div>
                   </div>
-                  ))}
+
                   
 
                   <div className="row">
                     <div className="p-5">
                     <h3 className="pb-2"style={{fontWeight:'700', borderBottom:'5px solid #5E50A1',
                         borderColor:'#5E50A1'}}>Pengalaman Kerja</h3>
-                     <div className="row mt-4">
+                     {experience?.map((item,index) => (
+                      <div key={index} className="row mt-4">
                         <div className="col-2 d-flex justify-content-center">
                             <img  src={tokopedia} alt="" style={{height:'100px'}}/>
                         </div>
                         <div className="col-9 border-bottom border-4 d-flex flex-column pb-4">
-                            <h3 style={{fontWeight:'700'}}>Engineer</h3>
-                            <h3>Tokopedia</h3>
+                            <h3 style={{fontWeight:'700'}}>{item.posisi}</h3>
+                            <h3>{item.nama_perusahaan}</h3>
                             <div className="d-flex">
-                            <h4 style={{color:'#9EA0A5'}}>July 2019 - January 2020</h4>
+                            <h4 style={{color:'#9EA0A5'}}>{item.start_at} - {item.end_at}</h4>
                             <h4 style={{color:'#9EA0A5', marginLeft:'30px', fontWeight:'400'}}>6 months</h4>
                             </div>
-                            <h5 style={{marginTop:'20px'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu lacus fringilla, vestibulum risus at.</h5>
+                            <h5 style={{marginTop:'20px'}}>{item.deskripsi}</h5>
                         </div>
                      </div>
+                     ))}
                      <div className="row mt-4">
                         <div className="col-2 d-flex justify-content-center">
                             <img  src={tokopedia} alt="" style={{height:'100px'}}/>

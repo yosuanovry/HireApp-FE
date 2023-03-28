@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
+// import Page from "../../Component/Pagination/pagination"
 import "./home.css";
 import louisth from "../../Assets/LandingPage/louisth.png";
 import iconloc from "../../Assets/Profile/mappin.png";
 import Footer from "../../Component/Footer/footerCorporate";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+
 // import { getUserPerekrut } from "../../Storages/Actions/userPerekrut";
 // import { useDispatch, useSelector } from 'react-redux';
 // import IconProfile from "../../Assets/NavCorporate/louisth.png";
@@ -13,21 +16,37 @@ import { Link } from "react-router-dom";
 export default function HomePerekrut() {
   const [datas, setDatas] = useState();
   const [searchText, setSearchText] = useState();
-  
+  const [currentPage, setCurrentPage] = useState(1)
+
   // const dispatch = useDispatch()
 
   useEffect(() => {
-    getUserData();
+    getUserData(1,1);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getUserData = async () => {
-    var url = `${process.env.REACT_APP_BASE_URL}/pekerja`;
+  useEffect(() => {
+    getUserData(currentPage,1);
+  }, [currentPage]);
+
+  const prevPage = () => {
+    const pg = currentPage - 1
+    setCurrentPage(pg)
+  }
+
+  const nextPage = () => {
+    const pg = currentPage + 1
+    setCurrentPage(pg)
+  }
+
+  const getUserData = async (page, limit) => {
+    var url = `${process.env.REACT_APP_BASE_URL}/pekerja?page=${page}&limit=${limit}`;
     return await axios
       .get(url, { mode: 'no-cors' })
       .then((res) => {
         console.log(res);
         setDatas(res.data.data);
+        setCurrentPage(page)
       })
       .catch((err) => {
         console.log(err);
@@ -35,7 +54,7 @@ export default function HomePerekrut() {
   };
 
   function searchUser() {
-    var url = `${process.env.REACT_APP_BASE_URL}/pekerja/search`;
+    var url = `${process.env.REACT_APP_BASE_URL}/pekerja/search?nama=` + searchText;
     axios
       .get(url)
       .then((res) => {
@@ -50,14 +69,6 @@ export default function HomePerekrut() {
       });
   }
 
-  
-
-  // const get_user = useSelector((state)=>state.get_UserPerekrut)
-
-  // useEffect(() => {
-  //   dispatch(getUserPerekrut());
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   console.log(datas);
 
@@ -154,39 +165,31 @@ export default function HomePerekrut() {
       </div>
 ))}
       
-
       <div className="container d-flex justify-content-center mt-5">
-        <div className="row">
-          <div className="col">
-            <nav aria-label="Page navigation example">
-              <ul className="pagination">
-                <li className="page-item">
-                  <a className="page-link" href="home-perekrut" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="home-perekrut">
-                    1
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="home-perekrut">
-                    2
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="home-perekrut">
-                    3
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="home-perekrut" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+        <div className="row d-flex align-items-center">
+          <div className="col p-3">
+            <Button className="butt-2" onClick={prevPage} style={{fontSize:'40px' , width:'100px', height:'100px', backgroundColor:'#5E50A1', border:'none'}}><pre style={{fontSize: '1.2em'}}>&lt;</pre></Button>
+          </div>
+          <div className="col p-3">
+            <Button  className="butt-2" onClick={(e) => setCurrentPage(1)} style={{fontSize:'40px' , width:'100px', height:'100px', backgroundColor:'#5E50A1', border:'none'}}>1</Button>
+          </div>
+          <div className="col p-3">
+            <Button  className="butt-2" onClick={(e) => setCurrentPage(2)} style={{fontSize:'40px' , width:'100px', height:'100px', backgroundColor:'#5E50A1', border:'none'}}>2</Button>
+          </div>
+          <div className="col p-3">
+            <Button  className="butt-2" onClick={(e) => setCurrentPage(3)} style={{fontSize:'40px' , width:'100px', height:'100px', backgroundColor:'#5E50A1', border:'none'}}>3</Button>
+          </div>
+          <div className="col p-3">
+            <Button className="butt-2" onClick={(e) => setCurrentPage(4)} style={{fontSize:'40px' , width:'100px', height:'100px', backgroundColor:'#5E50A1', border:'none'}}>4</Button>
+          </div>
+          <div className="col p-3">
+            <Button className="butt-2" onClick={(e) => setCurrentPage(5)} style={{fontSize:'40px' , width:'100px', height:'100px', backgroundColor:'#5E50A1', border:'none'}}>5</Button>
+          </div>
+          <div className="col p-3">
+            <Button className="butt-2" onClick={(e) => setCurrentPage(6)} style={{fontSize:'40px' , width:'100px', height:'100px', backgroundColor:'#5E50A1', border:'none'}}>6</Button>
+          </div>
+          <div className="col p-3">
+            <Button className="butt-2" onClick={nextPage} style={{fontSize:'40px' , width:'100px', height:'100px', backgroundColor:'#5E50A1', border:'none'}}><pre style={{fontSize: '1.2em'}}>&gt;</pre></Button>
           </div>
         </div>
       </div>
