@@ -16,6 +16,7 @@ import get_portofolioWorkers from "./getPortofolioWorkers";
 import delete_portofolio from "./deletePortofolioWorkers";
 import put_portofolio from "./putPortofolio";
 import userPekerja from "./getUserPekerja"
+import add_experiences from "./addExperienceWorkers"
 
 const rootReducers = combineReducers({
   registerUser,
@@ -34,7 +35,8 @@ const rootReducers = combineReducers({
   get_portofolioWorkers,
   delete_portofolio,
   put_portofolio,
-  userPekerja
+  userPekerja,
+  add_experiences,
 });
 
 export default rootReducers;

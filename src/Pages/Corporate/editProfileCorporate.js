@@ -12,7 +12,8 @@ import {
   getProfileCorporate,
   putProfileCorporate,
 } from "../../Storages/Actions/ProfileCorporate";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function EditProfileCorporate() {
   const corporate = useSelector((state) => state.get_profileCorp);
   const updateProfile = useSelector((state) => state.update_profileCorp);
@@ -27,6 +28,10 @@ export default function EditProfileCorporate() {
   const [provinsi, setProvinsi] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const toastLoading = () =>
+    toast.success("Please wait...", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   const coursesPage = () => {
     navigate("/home-perekrut");
   };
@@ -54,6 +59,7 @@ export default function EditProfileCorporate() {
     <div style={{ background: "#E5E5E5" }}>
       {/* navbar component */}
       <NavbarCorporate />
+      <ToastContainer />
       <div className="">
         <div
           className="container-fluid z-index-1 position-absolute"
@@ -128,7 +134,7 @@ export default function EditProfileCorporate() {
                       >
                         Batal
                       </button>
-                      {updateProfile.isLoading && <p>Loading......</p>}
+                      {updateProfile.isLoading && toastLoading()}
                       {updateProfile.errorMessage}
                     </div>
                   </div>

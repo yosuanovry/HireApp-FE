@@ -9,7 +9,8 @@ import IconEdit from "../../Assets/Profile/edit.png";
 import IconMap from "../../Assets/Profile/mappin.png";
 import { useNavigate } from "react-router-dom";
 import { putProfileCorporate } from "../../Storages/Actions/ProfileCorporate";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function HomeProfileCorporate() {
   const updateProfile = useSelector((state) => state.update_profileCorp);
 
@@ -23,6 +24,10 @@ export default function HomeProfileCorporate() {
   const [provinsi, setProvinsi] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const toastLoading = () =>
+    toast.success("Please wait...", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   const coursesPage = () => {
     navigate("/edit/profile-corporate");
   };
@@ -46,6 +51,7 @@ export default function HomeProfileCorporate() {
     <div style={{ background: "#E5E5E5" }}>
       {/* navbar component */}
       <NavbarCorporate />
+      <ToastContainer />
       <div className="">
         <div
           className="container-fluid z-index-1 position-absolute"
@@ -119,7 +125,7 @@ export default function HomeProfileCorporate() {
                     >
                       Batal
                     </button>
-                    {updateProfile.isLoading && <p>Loading......</p>}
+                    {updateProfile.isLoading && toastLoading()}
                     {updateProfile.errorMessage}
                   </div>
                 </div>
