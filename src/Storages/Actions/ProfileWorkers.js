@@ -103,6 +103,7 @@ export const putProfileWorkers = (data, navigate) => async (dispatch) => {
     );
     const payload = result.data;
     dispatch({ type: "UPDATE_PROFILE_SUCCESS", payload });
+    window.location.reload(false)
     // navigate("/edit/detail-profile-workers");
   } catch (err) {
     dispatch({
@@ -187,6 +188,7 @@ export const editExperience = (id,data, navigate) => async (dispatch) => {
       type: "UPDATE_EXPERIENCE_SUCCESS",
       payload: update_ExperienceWorkers,
     });
+    window.location.reload(false)
     navigate("/edit/detail-profile-workers");
   } catch (error) {
     dispatch({

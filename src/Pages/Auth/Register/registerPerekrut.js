@@ -12,6 +12,7 @@ export default function RegisterPerekrut() {
   const [nama, setNama] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirm_password, setConfirm_Password] = useState("");
   const [phone, setPhone] = useState("");
   const [perusahaan, setPerusahaan] = useState("");
   const [jabatan, setJabatan] = useState("");
@@ -33,6 +34,7 @@ export default function RegisterPerekrut() {
       nama,
       email,
       password,
+      confirm_password,
       phone,
       perusahaan,
       jabatan
@@ -40,12 +42,6 @@ export default function RegisterPerekrut() {
     dispatch(registerUserPerekrut(data));
   };
 
-  console.log(nama);
-  console.log(email);
-  console.log(password);
-  console.log(phone);
-  console.log(perusahaan);
-  console.log(jabatan);
 
   return (
     <div className="container-fluid">
@@ -167,13 +163,13 @@ export default function RegisterPerekrut() {
                         Konfirmasi Kata Sandi
                       </label>
                       <input
-                        name="password" 
-                        onChange={(e) => setPassword(e.target.value)}
+                        name="confirm_password" 
+                        onChange={(e) => setConfirm_Password(e.target.value)}
                         required
                         type="password"
                         className="form-control p-3"
                         placeholder="Masukan Konfirmasi kata sandi"
-                        value={password}
+                        value={confirm_password}
                       />
                     </div>
                     <div className="col mb-3">
@@ -197,9 +193,6 @@ export default function RegisterPerekrut() {
         <Modal.Header closeButton>
           <Modal.Title className="text-warning">Register Berhasil</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="d-flex justify-content-center">
-          <p>Please check your email for verification</p>
-        </Modal.Body>
         <Modal.Footer className="d-flex justify-content-center">
           <Button className="btn-warning text-white shadow-none" variant="secondary" style={{ width: "200px" }} onClick={() => navigate("/auth/login-perekrut")}>
             Ok

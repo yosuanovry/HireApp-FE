@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -8,7 +8,7 @@ import {
   putProfileWorkers,
   addPortofolio,
 } from "../../Storages/Actions/ProfileWorkers";
-import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
+import NavbarUser from "../../Component/Navbar/navbar";
 import Footer from "../../Component/Footer/footerCorporate";
 import IconProfile from "../../Assets/NavCorporate/louisth.png";
 import IconMap from "../../Assets/Profile/mappin.png";
@@ -17,6 +17,10 @@ import IconEdit from "../../Assets/Profile/edit.png";
 export default function EditProfileWorkers() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const getName = localStorage.getItem("nama")
+
+  
 
   const coursesPage = () => {
     navigate("/edit/detail-profile-workers");
@@ -40,6 +44,11 @@ export default function EditProfileWorkers() {
     console.log(data);
     dispatch(putProfileWorkers(data, navigate));
   };
+
+  useEffect(() => {
+    localStorage.setItem('nama', nama);
+  },[nama])
+  
   //add skill pekerja
   const [nama_skill, setNamaSkill] = useState("");
   const addSkillWorkers = (e) => {
@@ -98,7 +107,7 @@ export default function EditProfileWorkers() {
   
   return (
     <div style={{ background: "#E5E5E5" }}>
-      <NavbarCorporate />
+      <NavbarUser />
       <div className="">
         <div
           className="container-fluid border-0 z-index-1 position-absolute"
@@ -141,8 +150,8 @@ export default function EditProfileWorkers() {
                             </h6>
                           </div>
                           <div className="mt-3">
-                            <h4 className="mt-1">{"Louis Tomlinson"}</h4>
-                            <h6 className="mt-2">{"Web Developer"}</h6>
+                            <h4 className="mt-1">{getName}</h4>
+                            <h6 className="mt-2" >{"Web Developer"}</h6>
                             <h6 className="mt-2 mb-3">
                               <img className="img me-1" src={IconMap}></img>
                               {"Purwokerto, Jawa Tengah"}
@@ -193,7 +202,7 @@ export default function EditProfileWorkers() {
                             required
                             onChange={(e) => setNama(e.target.value)}
                             className="form-control p-3"
-                            placeholder={"Masukan nama lengkap"}
+                            placeholder={getName}
                           />
                         </div>
                         <div className="mb-3">
@@ -297,6 +306,7 @@ export default function EditProfileWorkers() {
                             <div className="mt-3 mb-3">
                               <button
                                 type="submit"
+                                required
                                 className="btn btn-warning text-white p-3"
                               >
                                 Simpan

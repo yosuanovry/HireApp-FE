@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
+import NavbarUser from "../../Component/Navbar/navbar";
 import Footer from "../../Component/Footer/footerCorporate";
 import IconProfile from "../../Assets/NavCorporate/louisth.png";
 import IconEdit from "../../Assets/Profile/edit.png";
@@ -53,7 +52,7 @@ export default function EditProfileCorporate() {
   return (
     <div style={{ background: "#E5E5E5" }}>
       {/* navbar component */}
-      <NavbarCorporate />
+      <NavbarUser />
       <div className="">
         <div
           className="container-fluid z-index-1 position-absolute"

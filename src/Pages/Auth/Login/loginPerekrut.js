@@ -61,7 +61,7 @@ export default function Login() {
                       <input onChange={(e) => setPassword(e.target.value)} required type="password" className="form-control p-3" placeholder="Masukan kata sandi" />
                     </div>
                     <div className="mb-3 d-flex justify-content-end">
-                      <Link className="text-center" to={"/auth/sendEmail"}>
+                      <Link className="text-center" to={"/auth/send-email"}>
                         Lupa kata sandi?
                       </Link>
                     </div>

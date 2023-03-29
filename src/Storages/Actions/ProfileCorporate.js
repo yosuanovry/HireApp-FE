@@ -20,7 +20,7 @@ export const getProfileCorporate = (navigate) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: `GET_PROFILE_CORPORATE_FAILED`,
-      payload: err.respons.data.message,
+      payload: err.message,
     });
     console.log("get profile corp error");
     console.log(err);
@@ -47,6 +47,7 @@ export const putProfileCorporate = (data, navigate) => async (dispatch) => {
       type: "UPDATE_PROFILE_CORPORATE_SUCCESS",
       payload: updateProfile,
     });
+    window.location.reload(false)
     navigate("/edit/profile-corporate");
   } catch (err) {
     console.log("update profile corp error");

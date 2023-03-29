@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
+import NavbarUser from "../../Component/Navbar/navbar";
 // import Page from "../../Component/Pagination/pagination"
 import "./home.css";
-import louisth from "../../Assets/LandingPage/louisth.png";
 import iconloc from "../../Assets/Profile/mappin.png";
 import Footer from "../../Component/Footer/footerCorporate";
 import { Link } from "react-router-dom";
@@ -21,12 +20,12 @@ export default function HomePerekrut() {
   // const dispatch = useDispatch()
 
   useEffect(() => {
-    getUserData(1,1);
+    getUserData(1,4);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    getUserData(currentPage,1);
+    getUserData(currentPage,4);
   }, [currentPage]);
 
   const prevPage = () => {
@@ -74,7 +73,7 @@ export default function HomePerekrut() {
 
   return (
     <>
-      <NavbarCorporate />
+      <NavbarUser />
       <div style={{backgroundColor:'#f7f7f7'}}>
       <div className="container-fluid d-flex align-items-center" style={{ height: "90px", backgroundColor: "#5E50A1" }}>
         <div className="container">
@@ -124,7 +123,7 @@ export default function HomePerekrut() {
   <div key={index} className="container">
         <div className="row d-flex align-items-center border-bottom" style={{ backgroundColor: "white", height: "300px" }}>
           <div className="col-2 d-flex justify-content-center">
-            <img style={{ width: "150px" }} src={louisth} alt="" />
+            <img style={{ width: "150px" }} src={item.photo} alt="" />
           </div>
           <div className="col-4">
             <h3 style={{ fontWeight: "700" }}>{item.nama}</h3>

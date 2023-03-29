@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
+import NavbarUser from "../../Component/Navbar/navbar";
 import Footer from "../../Component/Footer/footerCorporate";
 import IconChat from "../../Assets/Profile/iconchat.png";
 import IconSend from "../../Assets/Profile/send.png"
@@ -8,7 +8,7 @@ import IconSend from "../../Assets/Profile/send.png"
 export default function ChatWorkers() {
   return (
     <div style={{ background: "#E5E5E5" }}>
-      <NavbarCorporate />
+      <NavbarUser />
       <div className="container mb-5">
         <div class="row mt-5 mb-5">
           <div class="col-4 ">

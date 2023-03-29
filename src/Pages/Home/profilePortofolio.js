@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
+import NavbarUser from "../../Component/Navbar/navbar";
 import Footer from "../../Component/Footer/footerCorporate";
 import IconProfile from "../../Assets/NavCorporate/louisth.png";
 import iconloc from "../../Assets/Profile/mappin.png";
@@ -73,7 +73,7 @@ export default function EditProfileCorporate() {
 
   return (
     <div style={{ background: "#f5f4f4" }}>
-      <NavbarCorporate />
+      <NavbarUser />
       <div>
         <div
           className="container-fluid border-0 z-index-1 position-absolute"

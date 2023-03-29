@@ -4,7 +4,7 @@ export const sendEmail = (data,navigate) => async (dispatch) => {
     try {
       dispatch({ type: "GET_EMAIL_PENDING" });
       const result = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}users/otp`,
+        `${process.env.REACT_APP_BASE_URL}/users/otp`,
         data
       );
       const user = result.data.data;
@@ -20,7 +20,7 @@ export const sendEmail = (data,navigate) => async (dispatch) => {
     try {
       dispatch({ type: "SEND_OTP_PENDING" });
       const result = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}users/otp/confirm`,
+        `${process.env.REACT_APP_BASE_URL}/users/otp/confirm`,
         data
       );
       const user = result.data.data;
@@ -36,7 +36,7 @@ export const sendEmail = (data,navigate) => async (dispatch) => {
     try {
       dispatch({ type: "CONFIRM_PASSWORD_PENDING" });
       const result = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}users/reset`,
+        `${process.env.REACT_APP_BASE_URL}/users/reset`,
         data
       );
       const user = result.data.data;

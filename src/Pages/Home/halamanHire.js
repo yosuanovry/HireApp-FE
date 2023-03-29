@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
-import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
+import NavbarUser from "../../Component/Navbar/navbar";
 import Footer from "../../Component/Footer/footerCorporate";
 import IconProfile from "../../Assets/NavCorporate/louisth.png";
 import iconloc from "../../Assets/Profile/mappin.png";
@@ -33,7 +33,7 @@ export default function HalamanHire() {
   return (
     <>
     <div className="boxsh" style={{ background: "#f5f4f4" }}>
-      <NavbarCorporate />
+      <NavbarUser />
       <div>
         <div className="container z-index-2 position-absolute top-50 start-50 translate-middle" style={{ height: "70vh", marginTop: "5vh" }}>
           <div className="container" style={{ position: "relative", height: "" }}>

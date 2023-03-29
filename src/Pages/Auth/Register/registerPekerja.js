@@ -12,6 +12,7 @@ export default function RegisterPekerja() {
   const [nama, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirm_password, setConfirm_Password] = useState("");
   const [phone, setPhone] = useState("");
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -34,15 +35,12 @@ export default function RegisterPekerja() {
       nama,
       email,
       password,
+      confirm_password,
       phone,
     };
     dispatch(registerUserPekerja(data));
   };
 
-  console.log(nama);
-  console.log(email);
-  console.log(password);
-  console.log(phone);
 
   return (
     <div className="container-fluid">
@@ -89,7 +87,7 @@ export default function RegisterPekerja() {
                     </div>
                     <div className="mb-3">
                       <label className="form-label">Konfirmasi Kata Sandi</label>
-                      <input value={password} name="password" onChange={(e) => setPassword(e.target.value)} required type="password" className="form-control p-3" placeholder="Masukan Konfirmasi kata sandi" />
+                      <input value={confirm_password} name="password" onChange={(e) => setConfirm_Password(e.target.value)} required type="password" className="form-control p-3" placeholder="Masukan Konfirmasi kata sandi" />
                     </div>
                     <div className="mb-3">
                       <button className="btn btn-warning text-white shadow-none p-3 w-100">Daftar</button>
@@ -107,12 +105,9 @@ export default function RegisterPekerja() {
         </div>
       </div>
       <Modal show={show} onHide={() => handleClose()}>
-        <Modal.Header closeButton>
+        <Modal.Header className="text-center" closeButton>
           <Modal.Title className="text-warning">Register Berhasil</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="d-flex justify-content-center">
-          <p>Please check your email for verification</p>
-        </Modal.Body>
         <Modal.Footer className="d-flex justify-content-center">
           <Button className="btn-warning text-white shadow-none" variant="secondary" style={{ width: "200px" }} onClick={() => navigate("/auth/login-pekerja")}>
             Ok

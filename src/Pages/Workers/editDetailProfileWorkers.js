@@ -16,7 +16,7 @@ import {
   deletePortofolio,
   editPortofolio,
 } from "../../Storages/Actions/ProfileWorkers";
-import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
+import NavbarUser from "../../Component/Navbar/navbar";
 import Footer from "../../Component/Footer/footerCorporate";
 import IconProfile from "../../Assets/NavCorporate/louisth.png";
 import IconMap from "../../Assets/Profile/mappin.png";
@@ -118,34 +118,22 @@ export default function EditDetailProfile() {
     handleShowEdit();
   };
   //update Portofolio
-    const [updateDataPortofolio, setUpdateDataPortofolio] = useState({
-    nama_perusahaan: "",
-    link_repo: "",
-    tipe: "",
-  });
-
-  const handleChangeUpdatePorto = (e) => {
-    setUpdateDataPortofolio({
-      ...updateDataPortofolio,
-      [e.target.name]: e.target.value,
-    });
+  const [tipe, setTipePorto] = useState("");
+  const [link_repo, setLinkRepo] = useState("");
+  const UpdatePortofolioWorkers = (id) => {
+    const data = {
+      link_repo,
+      nama_perusahaan,
+      tipe,
+      photo,
+    };
+    console.log(data);
+    dispatch(editPortofolio(id, data, navigate));
   };
-
-  const UpdatePortofolioWorkers = async (id) => {
-    const formData = new FormData();
-    formData.append("nama_perusahaan", updateDataPortofolio.nama_perusahaan);
-    formData.append("link_repo", updateDataPortofolio.link_repo);
-    formData.append("tipe", updateDataPortofolio.tipe);
-    formData.append("photo", photo);
-    console.log(formData);
-    await dispatch(editPortofolio(id, formData, navigate));
-  };
-
   const confirmEditPortofolio = (id) => {
     setSelected(id);
     handleShowEditPorto();
   };
-
   //update data diri
   const [provinsi, setProvinsi] = useState("");
   const [kota, setKota] = useState("");
@@ -223,7 +211,7 @@ export default function EditDetailProfile() {
   };
   return (
     <div style={{ background: "#E5E5E5" }}>
-      <NavbarCorporate />
+      <NavbarUser />
       <div className="">
         <div
           className="container-fluid border-0 z-index-1 position-absolute"
@@ -385,7 +373,7 @@ export default function EditDetailProfile() {
                               placeholder={
                                 item.deskripsi || "Tuliskan deskripsi singkat"
                               }
-                              style={{ minHeight: "15vh" }}
+                              style={{ minHeight: "15vh", resize: "none" }}
                             />
                           </div>
                         </div>
@@ -763,7 +751,7 @@ export default function EditDetailProfile() {
                                 </div>
                                 <div className="col-8 border-bottom border-3">
                                   <h4>{item.nama_perusahaan}</h4>
-                                  <Link to={item.link_repo}>Link Repo</Link>
+                                  <Link to={item.link_repo}>{item.link_repo}</Link>
                                   <h6>{item.tipe}</h6>
                                 </div>
                               </div>
@@ -891,8 +879,7 @@ export default function EditDetailProfile() {
                           type="text"
                           name="nama_perusahaan"
                           required
-                          value={updateDataPortofolio.nama_perusahaan}
-                          onChange={handleChangeUpdatePorto}
+                          onChange={(e) => setNamaPerusahaan(e.target.value)}
                           className="form-control p-3"
                           placeholder="Masukkan nama aplikasi"
                         />
@@ -904,9 +891,8 @@ export default function EditDetailProfile() {
                         <input
                           type="text"
                           name="link_repo"
-                          value={updateDataPortofolio.link_repo}
                           required
-                          onChange={handleChangeUpdatePorto}
+                          onChange={(e) => setLinkRepo(e.target.value)}
                           className="form-control p-3"
                           placeholder="Masukkan link repository"
                         />
@@ -924,7 +910,7 @@ export default function EditDetailProfile() {
                               value="Aplikasi mobile"
                               name="tipe"
                               required
-                              onChange={handleChangeUpdatePorto}
+                              onChange={(e) => setTipePorto(e.target.value)}
                               id="tipe1"
                             />
                             <label className="form-check-label">
@@ -937,7 +923,7 @@ export default function EditDetailProfile() {
                               value="Aplikasi web"
                               name="tipe"
                               required
-                              onChange={handleChangeUpdatePorto}
+                              onChange={(e) => setTipePorto(e.target.value)}
                               id="tipe2"
                               type="radio"
                             />

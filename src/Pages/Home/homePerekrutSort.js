@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import NavbarCorporate from "../../Component/Navbar/navbarCorporate";
+import NavbarUser from "../../Component/Navbar/navbar";
 import "./home.css";
 import louisth from "../../Assets/LandingPage/louisth.png";
 import harryst from "../../Assets/LandingPage/harryst.png";
@@ -21,7 +21,7 @@ export default function HomePerekrut() {
 
   return (
     <>
-      <NavbarCorporate />
+      <NavbarUser />
       <div style={{backgroundColor:'#f7f7f7'}}>
       <div className="container-fluid d-flex align-items-center" style={{ height: "90px", backgroundColor: "#5E50A1" }}>
         <div className="container">
