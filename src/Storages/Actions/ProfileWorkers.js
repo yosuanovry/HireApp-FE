@@ -310,6 +310,7 @@ export const deletePortofolio = (id) => async (dispatch) => {
 export const editPortofolio = (id, data, navigate) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
+    if (!token) navigate("/auth/login-pekerja");
     let headers = {
       headers: {
         Authorization: `Bearer ${token}`,
