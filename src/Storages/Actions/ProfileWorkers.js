@@ -132,7 +132,6 @@ export const addSkill = (data, navigate) => async (dispatch) => {
     );
     const payload = result.data;
     dispatch({ type: "ADD_SKILL_SUCCESS", payload });
-    navigate("/edit/profile-workers");
   } catch (err) {
     dispatch({
       type: `ADD_SKILL_FAILED`,
@@ -160,7 +159,7 @@ export const addExperience = (data, navigate) => async (dispatch) => {
     );
     const payload = result.data;
     dispatch({ type: "ADD_EXPERIENCE_SUCCESS", payload });
-    navigate("/edit/profile-workers");
+    window.location.reload(false)
   } catch (error) {
     dispatch({
       type: `ADD_EXPERIENCE_ERROR`,
@@ -179,8 +178,9 @@ export const editExperience = (id,data, navigate) => async (dispatch) => {
       },
     };
     dispatch({ type: "UPDATE_EXPERIENCE_PENDING" });
-    const result = axios.put(
-      `${process.env.REACT_APP_BASE_URL}/experience/update/${id}`,data,
+    const result = await axios.put(
+      `${process.env.REACT_APP_BASE_URL}/experience/update/${id}`,
+      data,
       headers
     );
     const update_ExperienceWorkers = result.data;
@@ -208,7 +208,7 @@ export const deleteExperience = (id) => async (dispatch) => {
       },
     };
     dispatch({ type: "DELETE_EXPERIENCE_PENDING" });
-    const result = axios.delete(
+    const result = await axios.delete(
       `${process.env.REACT_APP_BASE_URL}/experience/delete/${id}`,
       headers
     );
@@ -217,6 +217,7 @@ export const deleteExperience = (id) => async (dispatch) => {
       type: "DELETE_EXPERIENCE_SUCCESS",
       payload: delete_ExperienceWorkers,
     });
+    window.location.reload(false)
   } catch (error) {
     dispatch({
       type: "DELETE_EXPERIENCE_FAILED",
@@ -245,7 +246,7 @@ export const addPortofolio = (data, navigate) => async (dispatch) => {
     );
     const payload = result.data;
     dispatch({ type: "ADD_PORTOFOLIO_SUCCESS", payload });
-    navigate("/edit/profile-workers");
+    window.location.reload(false)
   } catch (err) {
     dispatch({
       type: `ADD_PORTOFOLIO_ERROR`,
@@ -293,7 +294,7 @@ export const deletePortofolio = (id) => async (dispatch) => {
       },
     };
     dispatch({ type: "DELETE_PORTOFOLIO_PENDING" });
-    const result = axios.delete(
+    const result = await axios.delete(
       `${process.env.REACT_APP_BASE_URL}/portofolio/delete/${id}`,
       headers
     );
@@ -302,6 +303,7 @@ export const deletePortofolio = (id) => async (dispatch) => {
       type: "DELETE_PORTOFOLIO_SUCCESS",
       payload: delete_PortofolioWorkers,
     });
+    window.location.reload(false)
   } catch (error) {
     dispatch({
       type: "DELETE_PORTOFOLIO_FAILED",
@@ -321,7 +323,7 @@ export const editPortofolio = (id, data, navigate) => async (dispatch) => {
       },
     };
     dispatch({ type: "UPDATE_PORTOFOLIO_PENDING" });
-    const result = axios.put(
+    const result = await axios.put(
       `${process.env.REACT_APP_BASE_URL}/portofolio/update/${id}`,
       data,
       headers
@@ -331,6 +333,7 @@ export const editPortofolio = (id, data, navigate) => async (dispatch) => {
       type: "UPDATE_PORTOFOLIO_SUCCESS",
       payload: update_PortofolioWorkers,
     });
+    window.location.reload(false) 
     // navigate("/edit/detail-profile-workers");
   } catch (error) {
     dispatch({

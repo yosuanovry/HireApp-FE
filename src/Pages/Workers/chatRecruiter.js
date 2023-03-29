@@ -5,7 +5,6 @@ import NavbarUser from "../../Component/Navbar/navbar";
 import Footer from "../../Component/Footer/footerCorporate";
 import IconChat from "../../Assets/Profile/iconchat.png";
 import IconSend from "../../Assets/Profile/send.png";
-import { Link } from "react-router-dom";
 
 export default function ChatWorkers() {
   let token = localStorage.getItem("token");
@@ -13,15 +12,14 @@ export default function ChatWorkers() {
 
   const [workers, setWorkers] = useState();
   const [room_profile, setRoom_Profile] = useState({
-    photo: IconChat,
-    nama: "",
-    position: "",
-  });
+    photo: IconChat, nama:"", position:""
+  })
   const [chat_id, setChat_Id] = useState();
   const [message, setMessage] = useState();
   const [receiver_id, setReceiver_Id] = useState();
   const [chat, setChat] = useState();
 
+  
   // get pekerja
   useEffect(() => {
     const fetchPekerja = async () => {
@@ -31,7 +29,7 @@ export default function ChatWorkers() {
             Authorization: `Bearer ${token}`,
           },
         });
-        localStorage.setItem("id", res.data.data[0].id_perusahaan);
+        localStorage.setItem("id", res.data.data[0].id_pekerja)
         res.data.data && setWorkers(res.data.data);
       } catch (err) {
         console.log(err);
@@ -55,26 +53,26 @@ export default function ChatWorkers() {
     fetchChat();
   }, [chat_id]);
 
-  // send message
-  const sendMessage = async (e) => {
-    e.preventDefault();
-    try {
-      const data = {
-        receiver_id,
-        chat,
-      };
-      await axios.post(`${url}/chat/messages/${chat_id}`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      window.location.reload(false);
-    } catch (err) {
-      console.log(err);
+// send message
+const sendMessage = async (e) => {
+  e.preventDefault()
+  try {
+    const data = {
+      receiver_id,
+      chat
     }
-  };
+     await axios.post(`${url}/chat/messages/${chat_id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    window.location.reload(false)
+  } catch (err) {
+    console.log(err)
+  }
+}
 
-  const inputForm = () => {
+const inputForm = () => {
     if (chat_id) {
       return (
         <div className="row" style={{ marginTop: "400px" }}>
@@ -99,7 +97,6 @@ export default function ChatWorkers() {
     }
   };
 
-
   return (
     <div style={{ background: "#E5E5E5" }}>
       <NavbarUser />
@@ -108,30 +105,25 @@ export default function ChatWorkers() {
         <div class="row mt-5 mb-5">
           <div class="col-4 ">
             {workers?.map((item, index) => (
-              <div
-                key={index}
-                onClick={(e) => {
-                  setChat_Id(item.id);
-                  setReceiver_Id(item.id_pekerja);
-                  setRoom_Profile({
-                    photo: item.photo,
-                    nama: item.nama,
-                    position: item.position,
-                  });
-                }}
-                className="p-4 w-100 bg-white border-0 border-light-subtle rounded-3"
-                style={{ minHeight: "800px" }}
-              >
+              <div key={index} onClick={(e) => {
+                setChat_Id(item.id);
+                setReceiver_Id(item.id_pekerja)
+                setRoom_Profile({
+                  photo: item.photo,
+                  nama: item.nama_perusahaan,
+                  position: item.position
+                });
+              }} className="p-4 w-100 bg-white border-0 border-light-subtle rounded-3" style={{ minHeight: "800px" }}>
                 <div className="border-bottom border-2">
                   <h5 className="fw-bold p-2">Messages</h5>
                 </div>
                 <div className="p-2 mt-5 bg-warning">
-                  <div className="row d-flex align-items-center" style={{ cursor: "pointer" }}>
+                  <div className="row d-flex align-items-center" style={{cursor:'pointer'}}>
                     <div className="col-2 align-self-center">
-                      <img className="img me-3" src={item.photo} style={{ width: "40px" }} />
+                      <img className="img me-3" src={item.photo} style={{width:'40px'}} />
                     </div>
                     <div className="col-10 align-self-center">
-                      <h6 className="fw-bold">{item.nama}</h6>
+                      <h6 className="fw-bold">{item.nama_perusahaan}</h6>
                       <p className="fs-6">{item.position}</p>
                     </div>
                   </div>
@@ -143,13 +135,12 @@ export default function ChatWorkers() {
           <div class="col-8">
             <div className="p-4 w-100 bg-white border-0 border-light-subtle rounded-3" style={{ minHeight: "800px" }}>
               <div className="row border-bottom border-2">
-                <h5 className="col-4 fw-bold align-self-center">
-                  <img className="img me-3" src={room_profile.photo} style={{ width: "40px" }} />
+                <h5 className="col-5 fw-bold align-self-center">
+                  <img className="img me-3" src={IconChat} style={{width:'40px'}}/>
                   {room_profile.nama}
                 </h5>
-                <h5 className="col-5 fs-6 align-self-center">{room_profile.position}</h5>
-                
-                <Link style={{textDecoration:'none'}} className="col-3 align-self-center text-end" to={`/profile-portofolio/${receiver_id}`}><h5>Detail Profile</h5></Link>
+                <h5 className="col-3 fs-6 align-self-center">{room_profile.position}</h5>
+                <h5 className="col-4 align-self-center text-end">Detail Profile</h5>
               </div>
               {message?.map((item, index) => {
                 if (item.sender === localStorage.getItem("id")) {

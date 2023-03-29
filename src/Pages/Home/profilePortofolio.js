@@ -218,20 +218,6 @@ export default function EditProfileCorporate() {
                         </div>
                      </div>
                      ))}
-                     <div className="row mt-4">
-                        <div className="col-2 d-flex justify-content-center">
-                            <img  src={tokopedia} alt="" style={{height:'100px'}}/>
-                        </div>
-                        <div className="col-9 border-bottom border-4 d-flex flex-column pb-4">
-                            <h3 style={{fontWeight:'700'}}>Web Developer</h3>
-                            <h3>Tokopedia</h3>
-                            <div className="d-flex">
-                            <h4 style={{color:'#9EA0A5'}}>July 2019 - January 2020</h4>
-                            <h4 style={{color:'#9EA0A5', marginLeft:'30px', fontWeight:'400'}}>6 months</h4>
-                            </div>
-                            <h5 style={{marginTop:'20px'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu lacus fringilla, vestibulum risus at.</h5>
-                        </div>
-                     </div>
                     </div>
                   </div>
                 </div>

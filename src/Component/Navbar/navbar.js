@@ -92,11 +92,11 @@ export default function NavbarUser() {
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll></Nav>
           <Form className="d-flex">
-            <Link className="me-5" to={"/auth/login"}>
+            <Link className="me-5" to={"/chat-workers"}>
               {" "}
               <img src={iconBell} className="rounded-circle" alt={iconBell} style={{ maxWidth: "5vh" }} />
             </Link>
-            <Link className="me-5" to={"/chat-workers"}>
+            <Link className="me-5" to={"/chat-recruiters"}>
               {" "}
               <img src={iconMail} className="rounded-circle" alt={iconMail} style={{ maxWidth: "5vh" }} />
             </Link>

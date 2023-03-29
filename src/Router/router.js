@@ -14,6 +14,7 @@ import AddProfileCorporate from "../Pages/Corporate/homeProfileCorporate";
 import EditProfileWorkers from "../Pages/Workers/editProfileWorkers";
 import EditDetailProfileWorkers from "../Pages/Workers/editDetailProfileWorkers";
 import ChateWorkers from "../Pages/Workers/chatWorkers";
+import ChateRecruiters from "../Pages/Workers/chatRecruiter";
 import ProfilePortofolio from "../Pages/Home/profilePortofolio"
 import HalamanHire from "../Pages/Home/halamanHire"
 
@@ -56,6 +57,7 @@ function App() {
           element={<EditDetailProfileWorkers />}
         />
         <Route path="/chat-workers" element={<ChateWorkers />} />
+        <Route path="/chat-recruiters" element={<ChateRecruiters />} />
 
         <Route path="/profile-portofolio/:id" element={<ProfilePortofolio />} />
 

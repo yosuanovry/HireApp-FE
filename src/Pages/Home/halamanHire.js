@@ -4,14 +4,31 @@ import NavbarUser from "../../Component/Navbar/navbar";
 import Footer from "../../Component/Footer/footerCorporate";
 import IconProfile from "../../Assets/NavCorporate/louisth.png";
 import iconloc from "../../Assets/Profile/mappin.png";
-import {Link, useParams} from 'react-router-dom'
+import {Link, useParams, useNavigate} from 'react-router-dom'
+import { useDispatch, useSelector } from "react-redux";
+import { chatPekerja } from '../../Storages/Actions/chatPekerja';
 
 export default function HalamanHire() {
   const [user,setUser] = useState()
-  const {id} = useParams()
-  const [posisi, setPosisi] = useState()
-  const [deskripsi, setDeskripsi] = useState()
 
+  const {id} = useParams()
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const [position, setPosition] = useState()
+  const [description, setDescription] = useState()
+  const [chat, setChat] = useState()
+
+  const postChatPekerja = (e) => {
+    e.preventDefault();
+    const data = {
+      position,
+      description,
+      chat
+    };
+    dispatch(chatPekerja(id, data, navigate));
+  };
 
   useEffect(() => {
     getUserById();
@@ -90,7 +107,7 @@ export default function HalamanHire() {
                     <h1 key={index} className="pb-2" style={{fontWeight:'600', fontSize:'48px'}}>Hubungi {item.nama}</h1>
                     ))}
                     <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.</h3>
-                    <form>
+                    <form onSubmit={postChatPekerja}>
                     <div className="mt-5 pt-4">
                           <label className="form-label" style={{color:'#9EA0A5', fontWeight:'500'}}>
                             Untuk Posisi
@@ -99,8 +116,8 @@ export default function HalamanHire() {
                             fontSize:'22px'
                           }}
                             required
-                            onChange={(e) => setPosisi(e.target.value)}
-                            value={posisi}
+                            onChange={(e) => setPosition(e.target.value)}
+                            value={position}
                             type="text"
                             className="form-control p-4"
                             placeholder="Fulltime Frontend Developer"
@@ -112,16 +129,31 @@ export default function HalamanHire() {
                           </label>
                           <textarea
                             required
-                            onChange={(e) => setDeskripsi(e.target.value)}
-                            value={deskripsi} 
+                            onChange={(e) => setDescription(e.target.value)}
+                            value={description} 
                             type="text"
                             className="form-control p-3 mt-0"
                             placeholder="Membuat fitur dan maintenance untuk dashrboard admin dan posisi remote"
-                            style={{ minHeight: "400px", fontSize:'20px', resize:'none' }}
+                            style={{ minHeight: "200px", fontSize:'20px', resize:'none' }}
+                          />
+                        </div>
+
+                        <div className="mt-5 pt-4">
+                          <label className="form-label" style={{color:'#9EA0A5', fontWeight:'500'}}>
+                            First Message
+                          </label>
+                          <input style= {{
+                            fontSize:'22px'
+                          }}
+                            required
+                            onChange={(e) => setChat(e.target.value)}
+                            value={chat}
+                            type="text"
+                            className="form-control p-4"
+                            placeholder="Fulltime Frontend Developer"
                           />
                         </div>
                         <div className='mt-5 text-center'>
-                      <Link>
                       <button type="submit" className='btn btn-warning text-white p-3' style={{
                         width:'750px',
                         fontWeight:'700',
@@ -129,7 +161,6 @@ export default function HalamanHire() {
                       }}>
                           Hire
                       </button>
-                      </Link>
                       </div>
                     </form>
                     </div>    

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   addSkill,
@@ -13,15 +13,21 @@ import Footer from "../../Component/Footer/footerCorporate";
 import IconProfile from "../../Assets/NavCorporate/louisth.png";
 import IconMap from "../../Assets/Profile/mappin.png";
 import IconEdit from "../../Assets/Profile/edit.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function EditProfileWorkers() {
+  const name = localStorage.getItem("nama");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const getName = localStorage.getItem("nama")
-
-  
-
+  const put_profileWorkers = useSelector((state) => state.put_profileWorkers);
+  const add_skill = useSelector((state) => state.add_skill);
+  const add_experiences = useSelector((state) => state.add_experiences);
+  const add_portofolio = useSelector((state) => state.add_portofolio);
+  const toastLoading = () =>
+    toast.success("Please wait...", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   const coursesPage = () => {
     navigate("/edit/detail-profile-workers");
   };
@@ -108,6 +114,7 @@ export default function EditProfileWorkers() {
   return (
     <div style={{ background: "#E5E5E5" }}>
       <NavbarUser />
+      <ToastContainer />
       <div className="">
         <div
           className="container-fluid border-0 z-index-1 position-absolute"
@@ -150,8 +157,8 @@ export default function EditProfileWorkers() {
                             </h6>
                           </div>
                           <div className="mt-3">
-                            <h4 className="mt-1">{getName}</h4>
-                            <h6 className="mt-2" >{"Web Developer"}</h6>
+                            <h4 className="mt-1">{name}</h4>
+                            <h6 className="mt-2">{"Web Developer"}</h6>
                             <h6 className="mt-2 mb-3">
                               <img className="img me-1" src={IconMap}></img>
                               {"Purwokerto, Jawa Tengah"}
@@ -176,6 +183,8 @@ export default function EditProfileWorkers() {
                     >
                       Detail Profile
                     </button>
+                    {put_profileWorkers.isLoading && toastLoading()}
+                    {put_profileWorkers.errorMessage}
                   </div>
                 </div>
                 <div className="col-8">
@@ -202,7 +211,7 @@ export default function EditProfileWorkers() {
                             required
                             onChange={(e) => setNama(e.target.value)}
                             className="form-control p-3"
-                            placeholder={getName}
+                            placeholder={name}
                           />
                         </div>
                         <div className="mb-3">
@@ -317,10 +326,12 @@ export default function EditProfileWorkers() {
                       </div>
                     </div>
                   </div>
+                  {add_skill.isLoading && toastLoading()}
+                  {add_skill.errorMessage}
                 </div>
               </div>
             </form>
-            {/* Detail Data Diri */}
+            {/*Pengalaman */}
             <div>
               <form onSubmit={addExperienceWorkers}>
                 <div className="row mt-3">
@@ -423,6 +434,8 @@ export default function EditProfileWorkers() {
                             >
                               Tambah Pengalaman Kerja
                             </button>
+                            {add_experiences.isLoading && toastLoading()}
+                            {add_experiences.errorMessage}
                           </div>
                         </div>
                       </div>
@@ -546,6 +559,8 @@ export default function EditProfileWorkers() {
                             >
                               Tambah Portofolio
                             </button>
+                            {add_portofolio.isLoading && toastLoading()}
+                            {add_portofolio.errorMessage}
                           </div>
                         </div>
                       </div>
