@@ -15,6 +15,7 @@ import IconMap from "../../Assets/Profile/mappin.png";
 import IconEdit from "../../Assets/Profile/edit.png";
 
 export default function EditProfileWorkers() {
+  const name = localStorage.getItem("nama");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -141,7 +142,7 @@ export default function EditProfileWorkers() {
                             </h6>
                           </div>
                           <div className="mt-3">
-                            <h4 className="mt-1">{"Louis Tomlinson"}</h4>
+                            <h4 className="mt-1">{name}</h4>
                             <h6 className="mt-2">{"Web Developer"}</h6>
                             <h6 className="mt-2 mb-3">
                               <img className="img me-1" src={IconMap}></img>

@@ -95,6 +95,7 @@ export default function EditDetailProfile() {
   };
   const deleteDataPortofolio = (id) => {
     dispatch(deletePortofolio(id));
+    navigate("/edit/detail-profile-workers");
   };
   useEffect(() => {
     dispatch(getProfileWorkers(navigate));
@@ -121,14 +122,13 @@ export default function EditDetailProfile() {
   const [tipe, setTipePorto] = useState("");
   const [link_repo, setLinkRepo] = useState("");
   const UpdatePortofolioWorkers = (id) => {
-    const data = {
-      link_repo,
-      nama_perusahaan,
-      tipe,
-      photo,
-    };
-    console.log(data);
-    dispatch(editPortofolio(id, data, navigate));
+    const formData = new FormData();
+    formData.append("nama_perusahaan", nama_perusahaan);
+    formData.append("link_repo", link_repo);
+    formData.append("tipe", tipe);
+    formData.append("photo", photo);
+    console.log(formData);
+    dispatch(editPortofolio(id, formData, navigate));
   };
   const confirmEditPortofolio = (id) => {
     setSelected(id);
