@@ -1,7 +1,7 @@
 <h1 align="center">HIRE APP WEBSITE</h1>
 
 <p align="center">
-  <img width="100" src="https://github.com/yosuanovry/HireApp-FE/blob/dev/src/Assets/LandingPage/hireapp_logo.png"  />
+  <img width="250" src="https://github.com/yosuanovry/HireApp-FE/blob/dev/src/Assets/LandingPage/hireapp_logo.png"  />
 </p>
  <p align="center">
     Find The Best Talents for Revolutionary Change 4.0 with Hire.
