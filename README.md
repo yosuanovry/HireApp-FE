@@ -1,7 +1,7 @@
 <h1 align="center">HIRE APP WEBSITE</h1>
 
 <p align="center">
-  <img height="150" src="https://github.com/yosuanovry/HireApp-FE/blob/dev/src/Assets/LandingPage/hireapp_logo.png"  />
+  <img width="100" src="https://github.com/yosuanovry/HireApp-FE/blob/dev/src/Assets/LandingPage/hireapp_logo.png"  />
 </p>
  <p align="center">
     Find The Best Talents for Revolutionary Change 4.0 with Hire.
@@ -96,36 +96,36 @@ This app was built with some technologies below:
   },
 ```
 
-## Screenshots
+## Page Screenshots
 
-| Register Pekerja Page                                                                                                    | Register Perekrut Page                                                                                                            |
+| Register Pekerja                                                                                                    | Register Perekrut                                                                                                           |
 | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| ![Register](https://github.com/rizkysyp/HireApp---FrontEnd/blob/master/ss/RegisterPekerja.PNG "Register Pekerja Page") | ![Register Perekrut](https://github.com/rizkysyp/HireApp---FrontEnd/blob/master/ss/RegisterPerekrut.PNG "Register Perekrut Page") |
+| ![Register Pekerja](/public/images/auth-register-pekerja.png) | ![Register Perekrut](/public/images/auth-register-perekrut.png) |
 
-| Verification Page                                                                                              | Login Page                                                                                                         |
+| Login Pekerja                                                                                              | Login Perekrut                                                                                                         |
 | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| ![Verification](https://github.com/rizkysyp/HireApp---FrontEnd/blob/master/ss/Verif.PNG "Verification Page") | ![Login](https://github.com/rizkysyp/HireApp---FrontEnd/blob/master/ss/Login.PNG " Login Page") |
+| ![Login Pekerja](/public/images/login-pekerja.png) | ![Login Perekrut](/public/images/auth-login-perekrut.png) |
 
 | Landing Page | Home Page |
 | ------------- | ------------- |
-| ![seller](/ss/landing.png?raw=true " ") | ![home](/ss/Home.png?raw=true " ") |
+| ![Landing](/public/images/home.png) | ![Home](/public/images/home-recruiter.png) |
 
-| Profile Pekerja | Profile Perekrut |
+| Edit Profile Pekerja | Edit Profile Perekrut |
 | ------------- | ------------- |
-| ![profilepekerja](/ss/profilepekerja.png?raw=true " ") | ![profileperekrut](/ss/profileperekrut.png?raw=true " ") |
+| ![Profile Pekerja](/public/images/edit-profile-pekerja.png) | ![Profile Perekrut](/public/images/edit-profile-recruiter.png) |
 
-| Hire Page | Chat Page |
+| Detail Pekerja | Hire Pekerja |
 | ------------- | ------------- |
-| ![hire](/ss/hire1.png?raw=true " ") | ![chat](/ss/chat.png?raw=true " ") |
+| ![Detail Pekerja](/public/images/profile-portofolio-recruiter.png) | ![Hire Pekerja](/public/images/profile-hire-recruiter.png) |
 
-| Edit Profile Perekrut | Edit Profile Pekerja |
+| Chat Page | Logout |
 | ------------- | ------------- |
-| ![edit1](/ss/editprofileperekrut.png?raw=true " ") | ![edit2](/ss/editprofilepekerja.png?raw=true " ") |
+| ![Chat Page](/public/images/chat.png) | ![Logout](/public/images/logout.png) |
 
-## Related Project
+## Related Project Repository
 
-- [`BACKEND HIRE JOB`](https://github.com/rizkysyp/hireapp-be)
-- [`FRONTEND HIRE JOB`](https://github.com/rizkysyp/HireApp---FrontEnd)
+- [`BACKEND HIRE APP`](https://github.com/akbarfaiz/HireApp-BE)
+- [`FRONTEND HIRE APP`](https://github.com/yosuanovry/HireApp-FE)
 
 
 ## Our Team
