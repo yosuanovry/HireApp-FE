@@ -1,4 +1,4 @@
-<h1 align="center">HIRE APP WEBSITE</h1>
+<h1 align="center">Peworld</h1>
 
 <p align="center">
   <img width="250" src="https://github.com/yosuanovry/HireApp-FE/blob/dev/src/Assets/LandingPage/hireapp_logo.png"  />
