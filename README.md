@@ -35,11 +35,11 @@
 
 ## About The Project
 
-HIRE APP WEBSITE - Peworld or Hire App Website is a website made for recruiters to find and contact workers that has been registered to the
+Peworld or Hire App Website is a website made for recruiters to find and contact workers that has been registered to the
 website. After registered, recruiters and workers have to fill required data such as basic personal data, portofolio,
 company name, work experience etc.
 
-This website was made with React JS, React Context, Axios, Redux, Node JS, Express JS, and PostgreSQL
+**This website was made with React JS, React Context, Axios, Redux, Node JS, Express JS, and PostgreSQL**
 
 ### Built With
 
