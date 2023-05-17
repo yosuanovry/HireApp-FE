@@ -1,11 +1,23 @@
 <h1 align="center">Peworld</h1>
-
-<p align="center">
+<div>
+  <p align="center">
   <img width="250" src="https://github.com/yosuanovry/HireApp-FE/blob/dev/src/Assets/LandingPage/hireapp_logo.png"  />
+    <h3 align="center">Peworld Web App</h3>
 </p>
  <p align="center">
-    Find The Best Talents for Revolutionary Change 4.0 with Hire.
+    <a href="https://food-recipes-react.vercel.app/">View Demo</a>
+    ·
+    <a href="https://github.com/yosuanovry/Recipefy_FE_REACT/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/yosuanovry/Recipefy_FE_REACT/issues">Request Feature</a>
   </p>
+</div>
+Peworld is a website made for recruiters to find and contact workers that has been registered to the
+website. After registered, recruiters and workers have to fill required data such as basic personal data, portofolio,
+company name, work experience etc.
+</br>
+</br>
+This website was made with React JS, React Context, Axios, Redux, Node JS, Express JS, and PostgreSQL
 
 <!-- TABLE OF CONTENTS -->
 
@@ -15,19 +27,14 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built with</a></li>
-      </ul>
-    </li>
-    <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
+        <li><a href="#built-with">Built with</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#screenshots">Screenshots</a></li>
-    <li><a href="#related-project">Related Project</a></li>
+    <li><a href="#page-screenshots">Page Screenshots</a></li>
+    <li><a href="#related-project-repository">Related Project</a></li>
     <li><a href="#our-team">Our Team</a></li>
     <li><a href="#license">License</a></li>
   </ol>
@@ -35,11 +42,9 @@
 
 ## About The Project
 
-Peworld or Hire App Website is a website made for recruiters to find and contact workers that has been registered to the
-website. After registered, recruiters and workers have to fill required data such as basic personal data, portofolio,
-company name, work experience etc.
+<!-- GETTING STARTED -->
 
-**This website was made with React JS, React Context, Axios, Redux, Node JS, Express JS, and PostgreSQL**
+## Getting Started
 
 ### Built With
 
@@ -53,10 +58,6 @@ This app was built with some technologies below:
 - [React-redux](https://www.npmjs.com/package/react-redux)
 - [Express JS](https://expressjs.com/)
 - [PostgreSQL](https://www.postgresql.org/docs/)
-
-<!-- GETTING STARTED -->
-
-## Getting Started
 
 ### Installation
 
