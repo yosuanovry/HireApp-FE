@@ -50,7 +50,13 @@ export default function Login() {
               <div className="col" style={{ height: "40rem" }}>
                 <div className="p-5">
                   <h1>Halo, Pewpepole</h1>
-                  <h5 className="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.</h5>
+                  <h5 className="">ID deployment test for recruiter:</h5>
+                  <h6>
+                    Username: sandy@sg.id
+                  </h6>
+                  <h6>
+                    Password: 123456
+                  </h6>
                   <form className="mt-5" onSubmit={Login}>
                     <div className="mb-4">
                       <label className="form-label">Email</label>
