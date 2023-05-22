@@ -17,7 +17,6 @@ import {
   editPortofolio,
 } from "../../Storages/Actions/ProfileWorkers";
 import NavbarUser from "../../Component/Navbar/navbar";
-import Footer from "../../Component/Footer/footerCorporate";
 import IconProfile from "../../Assets/NavCorporate/louisth.png";
 import IconMap from "../../Assets/Profile/mappin.png";
 import IconEdit from "../../Assets/Profile/edit.png";
@@ -1028,14 +1027,6 @@ export default function EditDetailProfile() {
             </Modal>
           </div>
         </div>
-      </div>
-      <div
-        className="container-fluid z-index-2 position-absolute top-50 start-50 translate-middle"
-        style={{
-          marginTop: "4000px",
-        }}
-      >
-        <Footer />
       </div>
     </div>
   );

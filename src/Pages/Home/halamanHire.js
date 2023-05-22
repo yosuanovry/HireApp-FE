@@ -4,8 +4,8 @@ import NavbarUser from "../../Component/Navbar/navbar";
 import Footer from "../../Component/Footer/footerCorporate";
 import IconProfile from "../../Assets/NavCorporate/louisth.png";
 import iconloc from "../../Assets/Profile/mappin.png";
-import {Link, useParams, useNavigate} from 'react-router-dom'
-import { useDispatch, useSelector } from "react-redux";
+import { useParams, useNavigate} from 'react-router-dom'
+import { useDispatch } from "react-redux";
 import { chatPekerja } from '../../Storages/Actions/chatPekerja';
 
 export default function HalamanHire() {
